@@ -3407,15 +3407,15 @@ MonoBehaviour:
   Cofre: {fileID: 4125967939675644898, guid: ac9e1c7707e772d48aa34ef696079f37, type: 3}
   Final: {fileID: 6770397301516662947, guid: d416b4a6a01ce384994653919c8db198, type: 3}
   Enemic: {fileID: 517037612759283959, guid: e5fc5550f4b0b4940b7aaea3889dae09, type: 3}
-  seed: 3628195
+  seed: 6561034
   randomSeed: 1
-  tamany: 120
+  tamany: 50
   MesCamins: 50
   TrencarCami: 69
   iteracions: 4000
-  consumibleStamina: 5
-  enemics: 10
-  consumibleEspasa: 5
+  consumibleStamina: 10
+  enemicsProb: 10
+  consumibleEspasa: 7
   OffsetInternSapwnFi: 10
 --- !u!1 &1700873501
 GameObject:

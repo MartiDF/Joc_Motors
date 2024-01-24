@@ -29,11 +29,11 @@ public class Movement : MonoBehaviour
     void Update()
     {        
         if(!isFighting()){
-           
-            transform.position = Vector3.MoveTowards(transform.position, (destinationPosition), moveSpeed * Time.deltaTime);
 
-            if (Vector3.Distance(transform.position, (destinationPosition)) < 0.0001f)
+            float distancia = Vector3.Distance(transform.position, (destinationPosition));
+            if (distancia < 0.0001f)
             {
+
                 horizontalInput = Input.GetAxisRaw("Horizontal");
                 verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -53,9 +53,20 @@ public class Movement : MonoBehaviour
                 Vector3 off = new Vector3(0,heightOffset,0);
 
                 destinationPosition = _tilemap.GetCellCenterWorld(currentCellPosition)+off;
+
+
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, (destinationPosition), moveSpeed * Time.deltaTime);
             }
         }
 
+        if (Input.GetButtonDown("Submit"))
+        {
+            Debug.Log("Enemics a mover la bochaina");
+            _mazeMaker.FerTornEnemics();
+        }
     }
 
 

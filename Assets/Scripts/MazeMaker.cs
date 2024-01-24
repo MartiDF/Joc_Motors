@@ -33,10 +33,12 @@ public class MazeMaker : MonoBehaviour
     [Range(0, 100)]      public int TrencarCami;
     [Range(1, 20000)]    public int iteracions = 1000;
     [Range(0, 10)]       public int consumibleStamina;
-    [Range(0, 10)]       public int enemics;
+    [Range(0, 10)]       public int enemicsProb;
     [Range(0, 10)]       public int consumibleEspasa;
     [Range(1, 10)]       public int OffsetInternSapwnFi;
     int mescam = 0;
+
+    private List<Enemic> enemics = new List<Enemic>();
 
     public int getRelativeSpawnX()
     {
@@ -52,8 +54,6 @@ public class MazeMaker : MonoBehaviour
         return coor - offset;
     }
    
-
-
     public int getOffset()
     {
         return offset;
@@ -200,18 +200,27 @@ public class MazeMaker : MonoBehaviour
     {
         for (int Y = inOffset - 3; Y < tamany - inOffset + 3; Y++)
         {
-
+            
             for (int X = inOffset - 3; X < tamany - inOffset + 3; X++)
             {
                 if (map[X, Y] == ' ')
                 {
-                    if ((int)(UnityEngine.Random.value * 1000) % 1000 <= enemics)
+                    if ((int)(UnityEngine.Random.value * 1000) % 1000 <= enemicsProb)
                     {
-                        GameObject nouTrigger = Instantiate(Enemic, mapaConsumibles.GetCellCenterWorld(mapaConsumibles.WorldToCell(new Vector3Int(X - offset, Y - offset, -1))), Quaternion.identity);
-                        nouTrigger.transform.parent = _triggers.transform;
+                        GameObject enemicNou = Instantiate(Enemic, mapaConsumibles.GetCellCenterWorld(mapaConsumibles.WorldToCell(new Vector3Int(X - offset, Y - offset, -1))), Quaternion.identity);
+                        enemicNou.transform.parent = _triggers.transform;
+                        enemics.Add(enemicNou.GetComponent<Enemic>());
                     }                   
                 }
             }
+        }
+    }
+
+    public void FerTornEnemics()
+    {
+        foreach (Enemic enemic in enemics)
+        {
+            enemic.FerTorn();
         }
     }
 
@@ -850,7 +859,7 @@ public class MazeMaker : MonoBehaviour
         }
     }
 
-    int idCela(char[,] mapa, int X, int Y) // fer bucle i que dongui un numero del 0 al 255 que sera el identificador de casella, ferho en binari per evitar repetits i despres agafar i mirar amb un switch quin numero correspon a la cela i depenent del numero posar cada tipus de cela 
+    int idCela(char[,] mapa, int X, int Y) // fer bucle i que doni un numero del 0 al 255 que sera l'identificador de casella, fer-ho en binari per evitar repetits i despres agafar i mirar amb un switch quin número correspon a la cela i depenent del numero posar cada tipus de cela 
     {
 
         int contar = 0;
