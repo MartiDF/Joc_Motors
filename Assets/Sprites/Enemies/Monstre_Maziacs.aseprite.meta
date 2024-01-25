@@ -1,0 +1,1180 @@
+fileFormatVersion: 2
+guid: 7317c8571ee764146b5800308fe5d2e9
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 9
+    customPivotPosition: {x: 0.5, y: 0.425}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 9
+    customPivotPosition: {x: 0.5, y: 0.425}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 638417379551506293
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: Monstre_Maziacs_Frame_0
+    originalName: 
+    pivot: {x: 0.5192308, y: 0.425}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 620
+      width: 78
+      height: 117
+    spriteID: a61e145712ee310459ad5c05a5f47f5c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 620}
+  - name: Monstre_Maziacs_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.43618423}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 254
+      width: 81
+      height: 114
+    spriteID: c902745844d4d8b4e954e4df913e082c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 254}
+  - name: Monstre_Maziacs_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.43618423}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 376
+      width: 81
+      height: 114
+    spriteID: 21314c8babb40d14c8f9e9d0f6a16633
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 376}
+  - name: Monstre_Maziacs_Frame_3
+    originalName: 
+    pivot: {x: 0.5192308, y: 0.425}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 745
+      width: 78
+      height: 117
+    spriteID: 71b24164cf6214a48881bed05c4dc4d5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 745}
+  - name: Monstre_Maziacs_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.425}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 81
+      height: 117
+    spriteID: 2d5aae11ae9a11e4bbe1d32de43ac734
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Monstre_Maziacs_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.425}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 93
+      y: 126
+      width: 75
+      height: 117
+    spriteID: 032d49e4ba65913448ef4acae757fe43
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 93, y: 126}
+  - name: Monstre_Maziacs_Frame_6
+    originalName: 
+    pivot: {x: 0.48076925, y: 0.425}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 870
+      width: 78
+      height: 117
+    spriteID: ec401d3568465e9429a63c0ada1a7c30
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 870}
+  - name: Monstre_Maziacs_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.425}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 129
+      width: 81
+      height: 117
+    spriteID: 51094fbbde61d4f48bb45d846a7635a9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 129}
+  - name: Monstre_Maziacs_Frame_8
+    originalName: 
+    pivot: {x: 0.5192308, y: 0.43618423}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 93
+      y: 4
+      width: 78
+      height: 114
+    spriteID: c4bab4bf2ae03c74086aae0b907cf4ab
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 93, y: 4}
+  - name: Monstre_Maziacs_Frame_9
+    originalName: 
+    pivot: {x: 0.5, y: 0.43618423}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 498
+      width: 81
+      height: 114
+    spriteID: 03088957c16b268459d006ad35f0e121
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 498}
+  - name: Monstre_Maziacs_Frame_10
+    originalName: 
+    pivot: {x: 0.4722222, y: 2.4847224}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 995
+      width: 54
+      height: 18
+    spriteID: 78106075f1777cf4eabe6e256170faa1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 995}
+  - name: Monstre_Maziacs_Frame_11
+    originalName: 
+    pivot: {x: 0.5, y: 3.7270834}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 93
+      y: 993
+      width: 39
+      height: 12
+    spriteID: 7c19373a62755e64f8681189b2c2eac4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 93, y: 993}
+  - name: Monstre_Maziacs_Frame_12
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.37708336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 93
+      y: 477
+      width: 69
+      height: 108
+    spriteID: f8a2be9bd9f9c404991fd56201a19317
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 93, y: 477}
+  - name: Monstre_Maziacs_Frame_13
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.39926472}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 256
+      y: 4
+      width: 69
+      height: 102
+    spriteID: 9b95e9ceb557e01498e36028982eb959
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 256, y: 4}
+  - name: Monstre_Maziacs_Frame_14
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.39926472}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 256
+      y: 114
+      width: 69
+      height: 102
+    spriteID: 5335bee711441014db711062937a0b3c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 256, y: 114}
+  - name: Monstre_Maziacs_Frame_15
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.37708336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 93
+      y: 593
+      width: 69
+      height: 108
+    spriteID: c2f9d6d57ecbbf84d9e8d2931d9b4fec
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 93, y: 593}
+  - name: Monstre_Maziacs_Frame_16
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.38785717}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 179
+      y: 584
+      width: 69
+      height: 105
+    spriteID: 15bca0287fe59fa4f846fe0302db10cc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 179, y: 584}
+  - name: Monstre_Maziacs_Frame_17
+    originalName: 
+    pivot: {x: 0.5, y: 0.36985296}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 93
+      y: 367
+      width: 75
+      height: 102
+    spriteID: 2cc96abbc33e9824f95d5aa63b1b6227
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 93, y: 367}
+  - name: Monstre_Maziacs_Frame_18
+    originalName: 
+    pivot: {x: 0.40476188, y: 0.4326389}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 256
+      y: 447
+      width: 63
+      height: 108
+    spriteID: f958d5eddb0df3d42af52192729d35c1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 256, y: 447}
+  - name: Monstre_Maziacs_Frame_19
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.39926472}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 256
+      y: 224
+      width: 69
+      height: 102
+    spriteID: b3af664b699da754eb583480748ce0f7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 256, y: 224}
+  - name: Monstre_Maziacs_Frame_20
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.37708336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 93
+      y: 709
+      width: 69
+      height: 108
+    spriteID: 725c53aecf8f4f84eb1cb9a0aa2519ec
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 93, y: 709}
+  - name: Monstre_Maziacs_Frame_21
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.37708336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 93
+      y: 825
+      width: 69
+      height: 108
+    spriteID: ef1c2d3ff471efb46bb84ae7dc7207c7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 93, y: 825}
+  - name: Monstre_Maziacs_Frame_22
+    originalName: 
+    pivot: {x: 0.4722222, y: 2.4847224}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 93
+      y: 941
+      width: 54
+      height: 18
+    spriteID: 3d61bbae8bf516c4780f27ef14bc5a91
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 93, y: 941}
+  - name: Monstre_Maziacs_Frame_23
+    originalName: 
+    pivot: {x: 0.5, y: 3.7270834}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 179
+      y: 923
+      width: 39
+      height: 12
+    spriteID: 741025abc437804479ec0ab72429e100
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 179, y: 923}
+  - name: Monstre_Maziacs_Frame_24
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.37708336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 179
+      y: 4
+      width: 69
+      height: 108
+    spriteID: 973c637dc6e7e8b42bef545a36d62e1d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 179, y: 4}
+  - name: Monstre_Maziacs_Frame_25
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.37708336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 179
+      y: 120
+      width: 69
+      height: 108
+    spriteID: e3a10458318eb0f4f995f50f7c0960dc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 179, y: 120}
+  - name: Monstre_Maziacs_Frame_26
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.37708336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 179
+      y: 236
+      width: 69
+      height: 108
+    spriteID: a6af11ca75f2f3e4dafa597d18818f9a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 179, y: 236}
+  - name: Monstre_Maziacs_Frame_27
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.37708336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 179
+      y: 352
+      width: 69
+      height: 108
+    spriteID: fc9ecdd85a98b0f4297ccd7c445d3ed9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 179, y: 352}
+  - name: Monstre_Maziacs_Frame_28
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.37708336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 179
+      y: 468
+      width: 69
+      height: 108
+    spriteID: fe66ac8c3cc6f204fa44d051561d2ef2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 179, y: 468}
+  - name: Monstre_Maziacs_Frame_29
+    originalName: 
+    pivot: {x: 0.47916666, y: 0.37708336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 93
+      y: 251
+      width: 72
+      height: 108
+    spriteID: 1b83a71346d5e554faee7fd1f9b842b2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 93, y: 251}
+  - name: Monstre_Maziacs_Frame_30
+    originalName: 
+    pivot: {x: 0.575, y: 0.37708336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 256
+      y: 563
+      width: 60
+      height: 108
+    spriteID: 060c9cae42f7b0f45a40bb8e528440db
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 256, y: 563}
+  - name: Monstre_Maziacs_Frame_31
+    originalName: 
+    pivot: {x: 0.52272725, y: 0.35928574}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 256
+      y: 334
+      width: 66
+      height: 105
+    spriteID: 3aa69e11aed21fb43833f3a6906ec47b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 256, y: 334}
+  - name: Monstre_Maziacs_Frame_32
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.38785717}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 179
+      y: 697
+      width: 69
+      height: 105
+    spriteID: d3ac0eca8d522b944b2ab21e2556ddd2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 179, y: 697}
+  - name: Monstre_Maziacs_Frame_33
+    originalName: 
+    pivot: {x: 0.49999997, y: 0.38785717}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 179
+      y: 810
+      width: 69
+      height: 105
+    spriteID: c76b89660c34dff4d980191990018ca4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 179, y: 810}
+  - name: Monstre_Maziacs_Frame_34
+    originalName: 
+    pivot: {x: 0.4722222, y: 2.4847224}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 93
+      y: 967
+      width: 54
+      height: 18
+    spriteID: 14346bcf462d8e641bfa55037d17632d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 93, y: 967}
+  - name: Monstre_Maziacs_Frame_35
+    originalName: 
+    pivot: {x: 0.5, y: 3.7270834}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 179
+      y: 943
+      width: 39
+      height: 12
+    spriteID: f7eac492539fd7c40a7aae2efc723063
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 179, y: 943}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 1524013385
+    name: Monstre_Maziacs
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Monstre_Maziacs_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 78
+        height: 117
+      spriteId: a61e145712ee310459ad5c05a5f47f5c
+    - name: Monstre_Maziacs_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 0
+        y: 0
+        width: 81
+        height: 114
+      spriteId: c902745844d4d8b4e954e4df913e082c
+    - name: Monstre_Maziacs_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 0
+        y: 0
+        width: 81
+        height: 114
+      spriteId: 21314c8babb40d14c8f9e9d0f6a16633
+    - name: Monstre_Maziacs_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 0
+        y: 0
+        width: 78
+        height: 117
+      spriteId: 71b24164cf6214a48881bed05c4dc4d5
+    - name: Monstre_Maziacs_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 0
+        y: 0
+        width: 81
+        height: 117
+      spriteId: 2d5aae11ae9a11e4bbe1d32de43ac734
+    - name: Monstre_Maziacs_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 3
+        y: 0
+        width: 75
+        height: 117
+      spriteId: 032d49e4ba65913448ef4acae757fe43
+    - name: Monstre_Maziacs_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 3
+        y: 0
+        width: 78
+        height: 117
+      spriteId: ec401d3568465e9429a63c0ada1a7c30
+    - name: Monstre_Maziacs_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 0
+        y: 0
+        width: 81
+        height: 117
+      spriteId: 51094fbbde61d4f48bb45d846a7635a9
+    - name: Monstre_Maziacs_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 0
+        y: 0
+        width: 78
+        height: 114
+      spriteId: c4bab4bf2ae03c74086aae0b907cf4ab
+    - name: Monstre_Maziacs_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 0
+        y: 0
+        width: 81
+        height: 114
+      spriteId: 03088957c16b268459d006ad35f0e121
+    - name: Monstre_Maziacs_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 15
+        y: 5
+        width: 54
+        height: 18
+      spriteId: 78106075f1777cf4eabe6e256170faa1
+    - name: Monstre_Maziacs_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 21
+        y: 5
+        width: 39
+        height: 12
+      spriteId: 7c19373a62755e64f8681189b2c2eac4
+    - name: Monstre_Maziacs_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 108
+      spriteId: f8a2be9bd9f9c404991fd56201a19317
+    - name: Monstre_Maziacs_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 102
+      spriteId: 9b95e9ceb557e01498e36028982eb959
+    - name: Monstre_Maziacs_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 102
+      spriteId: 5335bee711441014db711062937a0b3c
+    - name: Monstre_Maziacs_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 108
+      spriteId: c2f9d6d57ecbbf84d9e8d2931d9b4fec
+    - name: Monstre_Maziacs_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 105
+      spriteId: 15bca0287fe59fa4f846fe0302db10cc
+    - name: Monstre_Maziacs_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 3
+        y: 12
+        width: 75
+        height: 102
+      spriteId: 2cc96abbc33e9824f95d5aa63b1b6227
+    - name: Monstre_Maziacs_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 15
+        y: 3
+        width: 63
+        height: 108
+      spriteId: f958d5eddb0df3d42af52192729d35c1
+    - name: Monstre_Maziacs_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 102
+      spriteId: b3af664b699da754eb583480748ce0f7
+    - name: Monstre_Maziacs_Frame_20
+      frameIndex: 20
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 108
+      spriteId: 725c53aecf8f4f84eb1cb9a0aa2519ec
+    - name: Monstre_Maziacs_Frame_21
+      frameIndex: 21
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 108
+      spriteId: ef1c2d3ff471efb46bb84ae7dc7207c7
+    - name: Monstre_Maziacs_Frame_22
+      frameIndex: 22
+      cellRect:
+        x: 15
+        y: 5
+        width: 54
+        height: 18
+      spriteId: 3d61bbae8bf516c4780f27ef14bc5a91
+    - name: Monstre_Maziacs_Frame_23
+      frameIndex: 23
+      cellRect:
+        x: 21
+        y: 5
+        width: 39
+        height: 12
+      spriteId: 741025abc437804479ec0ab72429e100
+    - name: Monstre_Maziacs_Frame_24
+      frameIndex: 24
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 108
+      spriteId: 973c637dc6e7e8b42bef545a36d62e1d
+    - name: Monstre_Maziacs_Frame_25
+      frameIndex: 25
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 108
+      spriteId: e3a10458318eb0f4f995f50f7c0960dc
+    - name: Monstre_Maziacs_Frame_26
+      frameIndex: 26
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 108
+      spriteId: a6af11ca75f2f3e4dafa597d18818f9a
+    - name: Monstre_Maziacs_Frame_27
+      frameIndex: 27
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 108
+      spriteId: fc9ecdd85a98b0f4297ccd7c445d3ed9
+    - name: Monstre_Maziacs_Frame_28
+      frameIndex: 28
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 108
+      spriteId: fe66ac8c3cc6f204fa44d051561d2ef2
+    - name: Monstre_Maziacs_Frame_29
+      frameIndex: 29
+      cellRect:
+        x: 6
+        y: 9
+        width: 72
+        height: 108
+      spriteId: 1b83a71346d5e554faee7fd1f9b842b2
+    - name: Monstre_Maziacs_Frame_30
+      frameIndex: 30
+      cellRect:
+        x: 6
+        y: 9
+        width: 60
+        height: 108
+      spriteId: 060c9cae42f7b0f45a40bb8e528440db
+    - name: Monstre_Maziacs_Frame_31
+      frameIndex: 31
+      cellRect:
+        x: 6
+        y: 12
+        width: 66
+        height: 105
+      spriteId: 3aa69e11aed21fb43833f3a6906ec47b
+    - name: Monstre_Maziacs_Frame_32
+      frameIndex: 32
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 105
+      spriteId: d3ac0eca8d522b944b2ab21e2556ddd2
+    - name: Monstre_Maziacs_Frame_33
+      frameIndex: 33
+      cellRect:
+        x: 6
+        y: 9
+        width: 69
+        height: 105
+      spriteId: c76b89660c34dff4d980191990018ca4
+    - name: Monstre_Maziacs_Frame_34
+      frameIndex: 34
+      cellRect:
+        x: 15
+        y: 5
+        width: 54
+        height: 18
+      spriteId: 14346bcf462d8e641bfa55037d17632d
+    - name: Monstre_Maziacs_Frame_35
+      frameIndex: 35
+      cellRect:
+        x: 21
+        y: 5
+        width: 39
+        height: 12
+      spriteId: f7eac492539fd7c40a7aae2efc723063
+    linkedCells: []
+    parentIndex: -1
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 81, y: 117}

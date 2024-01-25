@@ -46,8 +46,7 @@ public class Movement : MonoBehaviour
                 Vector3Int nextCellPosition = currentCellPosition + new Vector3Int((int)horizontalInput, (int)verticalInput, 0);
                 TileBase nextTile = _tilemap.GetTile(nextCellPosition);
 
-                if (nextTile == null || (nextTile.name != "TileTerra_1" && nextTile.name != "TileTerra_2" && nextTile.name != "TileTerra_3" && nextTile.name != "TileTerra_4" && nextTile.name != "TileTerra_5" && nextTile.name != "TileTerra_6" && nextTile.name != "TileTerra_7" && nextTile.name != "TileTerra_8" && nextTile.name != "TileTerra_9" && nextTile.name != "TileTerra_10" && nextTile.name != "TileTerra_11" && nextTile.name != "TileTerra_12" && nextTile.name != "TileTerra_13" && nextTile.name != "TileTerra_14" && nextTile.name != "TileTerra_15" && nextTile.name != "TileTerra_16" && nextTile.name != "TileTerra_17" && nextTile.name != "TileTerra_18" && nextTile.name != "TileTerra_19" && nextTile.name != "TileTerra_20") )               
-                    return;                
+                if (!nextTile.name.StartsWith("TileTerra_")) return;                
 
                 currentCellPosition = nextCellPosition;
                 Vector3 off = new Vector3(0,heightOffset,0);

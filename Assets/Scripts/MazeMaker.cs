@@ -7,10 +7,13 @@ using UnityEngine.Tilemaps;
 
 public class MazeMaker : MonoBehaviour
 {
+ 
+
     [SerializeField] public UnityEngine.Tilemaps.Tile[] tileSet;
     [SerializeField] public UnityEngine.Tilemaps.Tile[] tileSet_Terra;
     [SerializeField] public UnityEngine.Tilemaps.Tile[] tileSetConsumibles;
     [SerializeField] public Tilemap mapaConsumibles;
+    [SerializeField] public Tilemap mapaTerreny;
 
     [SerializeField] public GameObject Consumibles;
     [SerializeField] public GameObject Espassa;
@@ -18,6 +21,7 @@ public class MazeMaker : MonoBehaviour
     [SerializeField] public GameObject Final;
     [SerializeField] public GameObject Enemic;
     private GameObject _triggers;
+    public char[,] Maze { private set; get; }
 
     [Range(1, 10000000)]    public int seed = 0;
     private Tilemap _mapa;
@@ -39,6 +43,54 @@ public class MazeMaker : MonoBehaviour
     int mescam = 0;
 
     private List<Enemic> enemics = new List<Enemic>();
+    private GameObject tresor;
+    private Vector2 posTresor;
+
+    private char[] dic = { ' ', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', '_', '#' };
+    private char[] dic2 = { 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '!', '"', '$', '%', '&', '?', '/' };
+
+    // La instancia estática de la clase
+    private static MazeMaker _instance;
+
+    // Propiedad pública para acceder a la instancia
+    public static MazeMaker Instance
+    {
+        get
+        {
+            // Si la instancia no existe, créala
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<MazeMaker>();
+
+                // Si no se encontró una instancia en la escena, crea un nuevo GameObject y agrega el script
+                if (_instance == null)
+                {
+                    GameObject singletonObject = new GameObject(typeof(MazeMaker).Name);
+                    _instance = singletonObject.AddComponent<MazeMaker>();
+                }
+            }
+
+            // Devuelve la instancia
+            return _instance;
+        }
+    }
+
+    // Opcional: Puedes incluir los miembros regulares de tu clase MazeMaker aquí
+
+    private void Awake()
+    {
+        // Asegúrate de que solo haya una instancia de esta clase
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        // Establece la instancia
+        _instance = this;
+
+        // Opcional: Asegúrate de que el singleton sobreviva a los cambios de escena
+        DontDestroyOnLoad(gameObject);
+    }
 
     public int getRelativeSpawnX()
     {
@@ -70,16 +122,16 @@ public class MazeMaker : MonoBehaviour
     {
         if (MesCamins != mescam)
         {
-            char[,] Maze = new char[tamany, tamany];
+            Maze = new char[tamany, tamany];
             mescam = MesCamins;
-            Generar(Maze);
+            Generar();
         }
     }
 
     public void StartGen()
     {
 
-        tamany += 30;
+        tamany += 15;
         offset = tamany / 2;
         inOffset = 15 + OffsetIntern;
         mescam = MesCamins;
@@ -89,11 +141,11 @@ public class MazeMaker : MonoBehaviour
         
         UnityEngine.Random.InitState(seed);
 
-        char[,] Maze = new char[tamany, tamany];
-        Generar(Maze);
+        Maze = new char[tamany, tamany];
+        Generar();
     }
     
-    void Generar(char[,] Maze) 
+    void Generar() 
     {
         clearMap(Maze); //Debugger
         FillMap(Maze);  
@@ -161,8 +213,9 @@ public class MazeMaker : MonoBehaviour
         {
             map[FiX, FiY] = '?';
             mapaConsumibles.SetTile(new Vector3Int(FiX - offset, FiY - offset, 0), tileSetConsumibles[1]);
-            GameObject nouTrigger = Instantiate(Cofre, mapaConsumibles.GetCellCenterWorld(mapaConsumibles.WorldToCell(new Vector3Int(FiX - offset, FiY - offset, 0))), Quaternion.identity);
-            nouTrigger.transform.parent = _triggers.transform;
+            tresor = Instantiate(Cofre, mapaConsumibles.GetCellCenterWorld(mapaConsumibles.WorldToCell(new Vector3Int(FiX - offset, FiY - offset, 0))), Quaternion.identity);
+            tresor.transform.parent = _triggers.transform;
+            posTresor = new Vector2(tresor.transform.position.x, tresor.transform.position.y);
         }
     }
 
@@ -207,7 +260,8 @@ public class MazeMaker : MonoBehaviour
                 {
                     if ((int)(UnityEngine.Random.value * 1000) % 1000 <= enemicsProb)
                     {
-                        GameObject enemicNou = Instantiate(Enemic, mapaConsumibles.GetCellCenterWorld(mapaConsumibles.WorldToCell(new Vector3Int(X - offset, Y - offset, -1))), Quaternion.identity);
+                        GameObject enemicNou = Instantiate(Enemic, mapaTerreny.GetCellCenterWorld(mapaTerreny.WorldToCell(new Vector3Int(X - offset, Y - offset, -1))), Quaternion.identity);
+                        Debug.Log(enemicNou.transform.position);
                         enemicNou.transform.parent = _triggers.transform;
                         enemics.Add(enemicNou.GetComponent<Enemic>());
                     }                   
@@ -220,7 +274,7 @@ public class MazeMaker : MonoBehaviour
     {
         foreach (Enemic enemic in enemics)
         {
-            enemic.FerTorn();
+            if(enemic != null) enemic.FerTorn();
         }
     }
 
@@ -432,8 +486,7 @@ public class MazeMaker : MonoBehaviour
 
     void PrintMap(char[,] map)
     {
-        char[] dic = { ' ', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', '_', '#' };
-        char[] dic2 = {'D','F','G','H','J','K','L','Z','X','C','V','B','N','M','!','"','$','%','&','?','/'};
+
         for (int i = 0; i < tamany; i++)
         {
             for (int j = 0; j < tamany; j++)
@@ -875,6 +928,32 @@ public class MazeMaker : MonoBehaviour
         if (mapa[X - 1, Y + 1] == '#') contar += 128;
 
         return contar;
+    }
+
+    // Només per enemics!!!!!!!!!
+    public bool EstaBuida(int x, int y)
+    {
+        TileBase nextTile = mapaTerreny.GetTile(new Vector3Int(x-1,y-1,0));
+        Debug.Log(x+", "+y+": "+ nextTile.name);
+        return nextTile.name.StartsWith("TileTerra_");
+    }
+
+    // Retorna true si la casella es buida i no hi ha l'spawn, el tresor o un enemic
+    public bool EsViable(int x, int y)
+    {
+        Vector2 pos = new Vector2(x, y);
+        bool viable = true;
+        foreach (Enemic enemic in enemics)
+        {
+            if(enemic != null)
+            {
+                Transform transform = enemic.transform;
+                Vector2 posEnemic = transform.position;
+                if (pos == posEnemic) { viable = false; break; }
+            }
+        }
+        Debug.Log("Es buida "+pos+"? "+EstaBuida(x,y));
+        return viable && EstaBuida(x, y) && (tresor!=null || tresor!=null && posTresor != pos) && pos.x != SpawnX && pos.y != SpawnY;
     }
 }
 
