@@ -2,7 +2,52 @@ fileFormatVersion: 2
 guid: 7317c8571ee764146b5800308fe5d2e9
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Back
+    second: {fileID: 7400000, guid: 6ba4dbcb1de86c44ab67154fb21dfa37, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Back_attack
+    second: {fileID: 7400000, guid: 82046093ba2b88d4bab86c02f0291eaa, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Back_damage
+    second: {fileID: 7400000, guid: 197103df9d907e44b9872262f330678c, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Front
+    second: {fileID: 7400000, guid: 6bc73c2a7f97f5a449b999039618b7e9, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Frontal_Attack
+    second: {fileID: 7400000, guid: aeb85e022402ec5488a80424bb84e668, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Frontal_damage
+    second: {fileID: 7400000, guid: 4d7db2c0ce6239d439425002874df0cc, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Side
+    second: {fileID: 7400000, guid: 214c0a9936bc53443b6974806ca9c718, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Side_Attack
+    second: {fileID: 7400000, guid: 56a256a166d664c49908fed8ee25cd5f, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Side_Damage
+    second: {fileID: 7400000, guid: c2cc65d5971ab5e499dfce9c8da4dbe9, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -95,7 +140,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638417379551506293
+  platformSettingsDirtyTick: 638418801023796939
   textureAssetName: 
   singleSpriteImportData:
   - name: 

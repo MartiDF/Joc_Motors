@@ -261,7 +261,7 @@ public class MazeMaker : MonoBehaviour
                     if ((int)(UnityEngine.Random.value * 1000) % 1000 <= enemicsProb)
                     {
                         GameObject enemicNou = Instantiate(Enemic, mapaTerreny.GetCellCenterWorld(mapaTerreny.WorldToCell(new Vector3Int(X - offset, Y - offset, -1))), Quaternion.identity);
-                        Debug.Log(enemicNou.transform.position);
+                        // Debug.Log(enemicNou.transform.position);
                         enemicNou.transform.parent = _triggers.transform;
                         enemics.Add(enemicNou.GetComponent<Enemic>());
                     }                   
@@ -934,7 +934,7 @@ public class MazeMaker : MonoBehaviour
     public bool EstaBuida(int x, int y)
     {
         TileBase nextTile = mapaTerreny.GetTile(new Vector3Int(x-1,y-1,0));
-        Debug.Log(x+", "+y+": "+ nextTile.name);
+        // Debug.Log(x+", "+y+": "+ nextTile.name);
         return nextTile.name.StartsWith("TileTerra_");
     }
 
@@ -952,8 +952,8 @@ public class MazeMaker : MonoBehaviour
                 if (pos == posEnemic) { viable = false; break; }
             }
         }
-        Debug.Log("Es buida "+pos+"? "+EstaBuida(x,y));
-        return viable && EstaBuida(x, y) && (tresor!=null || tresor!=null && posTresor != pos) && pos.x != SpawnX && pos.y != SpawnY;
+        // Debug.Log("Es buida "+pos+"? "+EstaBuida(x,y));
+        return viable && EstaBuida(x, y) && (tresor==null || tresor!=null && posTresor != pos) && pos.x != SpawnX && pos.y != SpawnY;
     }
 }
 

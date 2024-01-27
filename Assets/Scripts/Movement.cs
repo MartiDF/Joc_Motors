@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour
     private MazeMaker _mazeMaker;
     private float verticalInput, horizontalInput;
 
+    private bool enemyCanMove = false;
+
     void Start()
     {   
         _tilemap = GameObject.Find("Maze").transform.Find("Grid").transform.Find("Tilemap").GetComponent<Tilemap>();
@@ -53,17 +55,22 @@ public class Movement : MonoBehaviour
 
                 destinationPosition = _tilemap.GetCellCenterWorld(currentCellPosition)+off;
 
-
+                enemyCanMove = true;
             }
             else
             {
+                if (enemyCanMove)
+                {
+                    enemyCanMove = false;
+                    _mazeMaker.FerTornEnemics();
+                }
                 transform.position = Vector3.MoveTowards(transform.position, (destinationPosition), moveSpeed * Time.deltaTime);
             }
         }
 
         if (Input.GetButtonDown("Submit"))
         {
-            Debug.Log("Enemics a mover la bochaina");
+            //Debug.Log("Enemics a mover la bochaina");
             _mazeMaker.FerTornEnemics();
         }
     }

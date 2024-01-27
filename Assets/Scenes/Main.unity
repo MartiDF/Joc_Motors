@@ -3412,11 +3412,11 @@ MonoBehaviour:
   seed: 6561034
   randomSeed: 1
   tamany: 50
-  MesCamins: 50
+  MesCamins: 55
   TrencarCami: 69
   iteracions: 4000
   consumibleStamina: 10
-  enemicsProb: 8
+  enemicsProb: 10
   consumibleEspasa: 7
   OffsetInternSapwnFi: 10
 --- !u!1 &1700873501

@@ -262,7 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02524092c1ede0c46a3245046e49de83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 9007967322644852991}
 --- !u!114 &8404332804587676427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,8 +276,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   heightOffset: 0.268
-  tilemap: {fileID: 0}
-  anims: {fileID: 7298617578612336612}
 --- !u!50 &8489240466860113248
 Rigidbody2D:
   serializedVersion: 4
@@ -338,7 +335,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010329634, y: 0.011029482}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -349,7 +346,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4609616, y: 2.4655638}
+  m_Size: {x: 1.45, y: 2.4}
   m_EdgeRadius: 0
 --- !u!114 &6490521250269194991
 MonoBehaviour:
@@ -363,8 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7ace96ac9356f49b4105ac57e5760a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stamina: 1
-  gm: {fileID: 0}
 --- !u!1 &3730214220352947011
 GameObject:
   m_ObjectHideFlags: 0

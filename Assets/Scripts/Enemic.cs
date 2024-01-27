@@ -2,23 +2,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Enemic : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 2.0f;
-    protected EnemyStates state = EnemyStates.Idle;
-    protected int direction = 0;
+    public EnemyStates state = EnemyStates.Idle;
+    public int Direction { get; private set; } = 0;
+    public bool StayAlive { get; private set; } = false;
 
     private List<int> direccions = new List<int>(){1, 2, 3, 4};
     private int[] posicio = { 0, 0 };
     private Vector2 novaPosicio;
 
     private MazeMaker maze;
+    private EnemyAnimatorController animController;
 
     // Start is called before the first frame update
     void Start()
     {
+        animController = gameObject.GetComponent<EnemyAnimatorController>();
         maze = MazeMaker.Instance;
         posicio[0] = (int)transform.position.x;
         posicio[1] = (int)transform.position.y;
@@ -41,15 +45,22 @@ public class Enemic : MonoBehaviour
         // veure si s'ha de moure, si ha d'atacar, si esta atentitisimo
         Debug.Log("me muevo");
         Moure();
+        ChangeState();
+    }
 
+    public void ChangeState(EnemyStates newState = EnemyStates.Idle)
+    {
+        // Debug.Log($"S'ha canviat a l'estat {newState}");
+        state = newState;
+        animController.ChangeAnimationState();
     }
 
     private void Moure() // Com punyetes se mou realment. Un misteri
     {
         obternirNovaDireccio();
-        int[] novaPosAux = posibleMoviment(direction);
+        int[] novaPosAux = posibleMoviment(Direction);
         novaPosicio = new Vector2(novaPosAux[0], novaPosAux[1]);
-        Debug.Log(posicio[0]+", " + posicio[1]+"; i anem cap a "+novaPosicio);
+        // Debug.Log(posicio[0]+", " + posicio[1]+"; i anem cap a "+novaPosicio);
         direccions = new List<int>() { 1, 2, 3, 4 };
     }
 
@@ -84,16 +95,29 @@ public class Enemic : MonoBehaviour
     {
         int direccio = 0;
         bool direccioDisponible = false;
-        int direccioAnt = DireccioContrari(direction);
-        if(direction != 0) direccions.Remove(DireccioContrari(direction));
+        int direccioAnt = DireccioContrari(Direction);
+        if(Direction != 0) direccions.Remove(DireccioContrari(Direction));
         while (!direccioDisponible && direccions.Count > 0)
         {
             int j = UnityEngine.Random.Range(0, direccions.Count);
             direccio = direccions[j];
-            if (!estaDisponible(direccio)) { Debug.Log("borrant direccio "+direccio); direccions.Remove(direccio); }
+            if (!estaDisponible(direccio)) {
+                // Debug.Log("borrant direccio "+direccio);
+                direccions.Remove(direccio);
+            }
             else direccioDisponible = true;
         }
-        if(direccions.Count == 0) direction = direccioAnt;
-        else direction = direccio;
+        if(direccions.Count == 0) Direction = direccioAnt;
+        else Direction = direccio;
+    }
+    public void GetHit(bool playerDied = false)
+    {
+        ChangeState(EnemyStates.Attacking);
+        StayAlive = playerDied;
+    }
+
+    internal void Die()
+    {
+        Destroy(gameObject);
     }
 }
