@@ -7,7 +7,7 @@ using UnityEngine.XR;
 public class Enemic : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed = 2.0f;
+    private float moveSpeed = 4.0f;
     public EnemyStates state = EnemyStates.Idle;
     public int Direction { get; private set; } = 0;
     public bool StayAlive { get; private set; } = false;
@@ -43,7 +43,6 @@ public class Enemic : MonoBehaviour
     public void FerTorn()
     {
         // veure si s'ha de moure, si ha d'atacar, si esta atentitisimo
-        Debug.Log("me muevo");
         Moure();
         ChangeState();
     }

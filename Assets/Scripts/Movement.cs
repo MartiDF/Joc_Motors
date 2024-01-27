@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
     [Range(0.5f,10f)]
     public float moveSpeed = 2f; 
-    [Range(0.0f,1.0f)]
+    [Range(-1.0f,1.0f)]
     public float heightOffset = 0.3f;
     private Tilemap _tilemap; 
     private Vector3 destinationPosition; 
@@ -55,13 +55,14 @@ public class Movement : MonoBehaviour
 
                 destinationPosition = _tilemap.GetCellCenterWorld(currentCellPosition)+off;
 
-                enemyCanMove = true;
+                if (horizontalInput != 0 || verticalInput != 0) enemyCanMove = true;
             }
             else
             {
                 if (enemyCanMove)
                 {
                     enemyCanMove = false;
+                    Debug.Log("AMS");
                     _mazeMaker.FerTornEnemics();
                 }
                 transform.position = Vector3.MoveTowards(transform.position, (destinationPosition), moveSpeed * Time.deltaTime);
