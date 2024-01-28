@@ -287,7 +287,6 @@ public class MazeMaker : MonoBehaviour
             {
                 iteracio--;
                 map[NextX, NextY] = ' ';
-                //if (UnityEngine.Random.Range(1, 100) <= TrencarCami)
 
                     if ((int)(UnityEngine.Random.value* 100) % 100 <= MesCamins)
                 {

@@ -18,7 +18,6 @@ public class Animations : MonoBehaviour
 
     public void Armed_attack()
     {
-        anim.SetBool("unarmed", false);
         anim.SetBool("chest", false);
         anim.SetBool("fighting", true);
         
@@ -26,8 +25,6 @@ public class Animations : MonoBehaviour
 
     public void Unarmed_attack()
     {
-        Debug.Log("CONEJO");
-        anim.SetBool("unarmed", true);
         anim.SetBool("chest", false);
         anim.SetBool("fighting", true);
     }
