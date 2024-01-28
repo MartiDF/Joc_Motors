@@ -978,7 +978,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 482, y: 566}
+    uvTransform: {x: 590, y: 662}
   - name: Player_Frame_43
     originalName: 
     pivot: {x: 0.5555555, y: -0.4375}
@@ -998,7 +998,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 482, y: -18}
+    uvTransform: {x: 590, y: 78}
   - name: Player_Frame_44
     originalName: 
     pivot: {x: 0.5, y: -0.4375}
@@ -1018,7 +1018,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 480, y: 54}
+    uvTransform: {x: 590, y: 150}
   - name: Player_Frame_45
     originalName: 
     pivot: {x: 0.5, y: -0.42424244}
@@ -3907,26 +3907,26 @@ ScriptedImporter:
     - name: Player_Frame_42
       frameIndex: 42
       cellRect:
-        x: -68
-        y: -68
-        width: 256
-        height: 256
+        x: 40
+        y: 28
+        width: 36
+        height: 62
       spriteId: 28037d095b525eb44ba40d4adceecc8c
     - name: Player_Frame_43
       frameIndex: 43
       cellRect:
-        x: -68
-        y: -68
-        width: 256
-        height: 256
+        x: 40
+        y: 28
+        width: 36
+        height: 64
       spriteId: bb9e42a7f377b344ca05179bf9d90036
     - name: Player_Frame_44
       frameIndex: 44
       cellRect:
-        x: -68
-        y: -68
-        width: 256
-        height: 256
+        x: 42
+        y: 28
+        width: 36
+        height: 64
       spriteId: 88363bbeb736d404c95b11c787dc528a
     - name: Player_Frame_45
       frameIndex: 45

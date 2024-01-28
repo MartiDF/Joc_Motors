@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 977756138776739464}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0559, z: -0.3}
+  m_LocalPosition: {x: -0.017, y: -1.154, z: -0.3}
   m_LocalScale: {x: 0.32935882, y: 0.245529, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -277,6 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   heightOffset: 0.268
+  currentCellPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &8489240466860113248
 Rigidbody2D:
   serializedVersion: 4
@@ -347,7 +348,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3, y: 1.6}
+  m_Size: {x: 1.2, y: 1.4}
   m_EdgeRadius: 0
 --- !u!114 &6490521250269194991
 MonoBehaviour:
@@ -387,7 +388,7 @@ Transform:
   m_GameObject: {fileID: 3730214220352947011}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.026, y: -0.389, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -526,4 +527,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1

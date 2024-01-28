@@ -63,9 +63,9 @@ public class Enemic : MonoBehaviour
         
     }
 
-    public int[] PosicioJugador()
+       public int[] PosicioJugador()
     {
-        int[] posPlayer = new int[] { movement.currentCellPosition.x, movement.currentCellPosition.y };
+        int[] posPlayer = new int[] { Movement.Instance.currentCellPosition.x, Movement.Instance.currentCellPosition.y };
         return posPlayer;
     }
 
@@ -94,7 +94,12 @@ public class Enemic : MonoBehaviour
         int[] aRevisar = posibleMoviment(n);
         while (i < RangDeVisio && transitable && viaLliure)
         {
-            if (!maze.EsViable(aRevisar[0], aRevisar[1])) transitable = false;
+            if (!maze.EsViable(aRevisar[0], aRevisar[1]))
+            {
+                transitable = false;
+                Debug.Log("chocho");
+            }
+
             else aRevisar = posibleMoviment(n);
             i++;
             if (playerFound(aRevisar)) viaLliure = false;
@@ -103,6 +108,7 @@ public class Enemic : MonoBehaviour
             localitzat = aRevisar;
             isFollowing = true;
         }
+        
     }
 
     private bool estaDisponible(int n)
@@ -173,7 +179,7 @@ public class Enemic : MonoBehaviour
         StayAlive = playerDied;
     }
 
-    private void Patrulla() // Com punyetes se mou realment. Un misteri
+    private void Patrulla()
     {
         obternirNovaDireccio();
         int[] novaPosAux = posibleMoviment(Direction);

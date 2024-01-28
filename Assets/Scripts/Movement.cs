@@ -7,6 +7,8 @@ using static UnityEditor.PlayerSettings;
 using static UnityEngine.Rendering.DebugUI;
 public class Movement : MonoBehaviour
 {
+    public static Movement Instance { get; private set; }
+
     [Range(0.5f,10f)]
     public float moveSpeed = 2f; 
     [Range(-1.0f,1.0f)]
@@ -23,7 +25,8 @@ public class Movement : MonoBehaviour
     private List<Enemic> enemics = new List<Enemic>();
 
     void Start()
-    {   
+    {
+        Instance = this;
         _tilemap = GameObject.Find("Maze").transform.Find("Grid").transform.Find("Tilemap").GetComponent<Tilemap>();
         _anims = this.GetComponent<Animations>();
         _mazeMaker = GameObject.Find("Maze").GetComponent<MazeMaker>();  
