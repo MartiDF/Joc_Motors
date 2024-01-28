@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     /* SCRIPTS */
     private Movement _movement;
-    private Animations _anims;
     private Player _player;
     private MazeMaker _mazeMaker;
 
@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
     public GameObject _espasaTrigger;
     public UnityEngine.Tilemaps.Tile _cofreTile;
     public UnityEngine.Tilemaps.Tile _espasaTile;
+    public Image _keyUI;
 
 
     /* GAME OBJECTS */
@@ -47,8 +48,10 @@ public class GameController : MonoBehaviour
         _movement = GameObject.Find("Player").GetComponent<Movement>();
         _mazeMaker = GameObject.Find("Maze").GetComponent<MazeMaker>();
         _tileMapConsumibles = GameObject.Find("Maze").transform.GetChild(0).transform.GetChild(1).GetComponent<Tilemap>();
-        _anims = GameObject.Find("Player").GetComponent<Animations>();
         _triggers = GameObject.Find("Maze").transform.GetChild(1).gameObject;
+
+
+        _keyUI.enabled = false;
     }
 
     void Update(){
@@ -105,13 +108,15 @@ public class GameController : MonoBehaviour
         if (_player.GetIsChested())
         {
             Debug.Log("Deixar Cofre");
+
+            _keyUI.enabled = false;
             Vector3Int positions = _tileMapConsumibles.WorldToCell(_player.transform.position);
             _tileMapConsumibles.SetTile(new Vector3Int(positions.x - 1, positions.y - 1, 0), _cofreTile);
             GameObject nouTrigger = Instantiate(_cofreTrigger, _tileMapConsumibles.GetCellCenterWorld(_tileMapConsumibles.WorldToCell(new Vector3Int(positions.x - 1, positions.y - 1, 0))), Quaternion.identity);
             nouTrigger.transform.parent = _triggers.transform;
         }
         _player.GoArmed();
-        _anims.Armed();
+        _player.IsArmed = true;
     }
 
     private void GetChest() {
@@ -125,9 +130,8 @@ public class GameController : MonoBehaviour
             GameObject nouTrigger = Instantiate(_espasaTrigger, _tileMapConsumibles.GetCellCenterWorld(_tileMapConsumibles.WorldToCell(new Vector3Int(positions.x - 1, positions.y - 1, 0))), Quaternion.identity);
             nouTrigger.transform.parent = _triggers.transform;
         }
-
+        _keyUI.enabled = true;
         _player.GoChested();
-        _anims.Chested();
     }
 
     void StaminaControl() {
@@ -135,7 +139,7 @@ public class GameController : MonoBehaviour
         if (_player.GetStamina() == 0)
         {
             _deathPanel.SetActive(true);
-            _anims.Die();
+            _player.Die();
         }
 
         if (_movement.isWalking())

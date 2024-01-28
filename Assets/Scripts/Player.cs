@@ -7,15 +7,19 @@ public class Player : MonoBehaviour
 {
     private float _stamina = 1;
     private GameController _gm;
-    private Animations _anims;
 
-    private bool _inConsumable, _inSword, _inChest, _inFight, _inSpawn;
-    private bool _chested, _unarmed;
+    private bool _inConsumable, _inSword, _inChest, _inSpawn;
+    private bool _chested;
     private Collider2D _currentCollider;
+    public Directions Direction = Directions.down;
+
+    public bool IsDead { private set; get; } = false;
+    public bool IsFighting { private set; get; } = false;
+    public bool IsWalking = false;
+    public bool IsArmed = false;
 
     public void Start()
     {
-        _anims = GetComponent<Animations>();
         _gm = GameObject.Find("GameManager").GetComponent<GameController>();
     }
 
@@ -36,7 +40,7 @@ public class Player : MonoBehaviour
         return _chested;}
 
     public bool GetIsArmed()  {
-        return !_unarmed;}
+        return IsArmed;}
 
     public float GetStamina() {
         return _stamina;}
@@ -130,19 +134,13 @@ public class Player : MonoBehaviour
     /* METHODS */
     public void GoFight(Collider2D obj) {
         if (obj == null) return;
-        if (!_anims.isUnarmed()) _anims.Armed_attack();
-        else _anims.Unarmed_attack();
+        IsFighting = true;
+
                 
         if (obj.CompareTag("Enemy"))
         {
-            SetStamina(!_unarmed ? _gm.GetStaminaFightArmed() : _gm.GetStaminaFight());
+            SetStamina(IsArmed ? _gm.GetStaminaFightArmed() : _gm.GetStaminaFight());
             obj.gameObject.GetComponent<Enemic>().GetHit(_stamina <= 0);
-            _unarmed = true;
-        }
-        else
-        {
-             Destroy(obj.gameObject);
-            _unarmed = true;
         }
         
 
@@ -150,12 +148,23 @@ public class Player : MonoBehaviour
 
     public void GoArmed() {
         _chested = false;
-        _unarmed = false;
+        IsArmed = true;
         
     }
 
     public void GoChested() { 
         _chested = true;
-        _unarmed = true;
+        IsArmed = false;
+    }
+
+    internal void Die()
+    {
+        IsDead = true;
+    }
+
+    public void AttackAnimationFinished()
+    {
+        IsFighting = false;
+        IsArmed = false;
     }
 }

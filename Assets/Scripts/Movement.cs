@@ -15,10 +15,11 @@ public class Movement : MonoBehaviour
     public float heightOffset = 0.3f;
     private Tilemap _tilemap; 
     private Vector3 destinationPosition; 
-    public Vector3Int currentCellPosition; 
-    private Animations _anims;
+    public Vector3Int currentCellPosition;
     private MazeMaker _mazeMaker;
     private float verticalInput, horizontalInput;
+
+    private Player player;
 
     private bool enemyCanMove = false;
 
@@ -28,8 +29,9 @@ public class Movement : MonoBehaviour
     {
         Instance = this;
         _tilemap = GameObject.Find("Maze").transform.Find("Grid").transform.Find("Tilemap").GetComponent<Tilemap>();
-        _anims = this.GetComponent<Animations>();
-        _mazeMaker = GameObject.Find("Maze").GetComponent<MazeMaker>();  
+        _mazeMaker = GameObject.Find("Maze").GetComponent<MazeMaker>();
+        player = gameObject.GetComponent<Player>();
+
 
         currentCellPosition += new Vector3Int(_mazeMaker.getRelativeSpawnX(), _mazeMaker.getRelativeSpawnY(), 0);
         destinationPosition = _tilemap.GetCellCenterWorld(currentCellPosition)+new Vector3(0,heightOffset,0);
@@ -52,7 +54,8 @@ public class Movement : MonoBehaviour
                 
                 else        
                     horizontalInput = 0f;
-                
+
+                if (verticalInput != 0 || horizontalInput != 0) player.Direction = findDirection(horizontalInput, verticalInput);
                 Vector3Int nextCellPosition = currentCellPosition + new Vector3Int((int)horizontalInput, (int)verticalInput, 0);
                 TileBase nextTile = _tilemap.GetTile(nextCellPosition);
 
@@ -62,8 +65,9 @@ public class Movement : MonoBehaviour
                 Vector3 off = new Vector3(0,heightOffset,0);
 
                 destinationPosition = _tilemap.GetCellCenterWorld(currentCellPosition)+off;
-
+                
                 if (horizontalInput != 0 || verticalInput != 0) enemyCanMove = true;
+                player.IsWalking = false;
             }
             else
             {
@@ -73,8 +77,17 @@ public class Movement : MonoBehaviour
                     _mazeMaker.FerTornEnemics();
                 }
                 transform.position = Vector3.MoveTowards(transform.position, (destinationPosition), moveSpeed * Time.deltaTime);
+                player.IsWalking = true;
             }
         }
+    }
+
+    private Directions findDirection(float x, float y)
+    {
+        if (x > 0) return Directions.right;
+        else if (x < 0) return Directions.left;
+        else if (y > 0) return Directions.up;
+        else return Directions.down;
     }
 
     public bool isWalking(){
@@ -82,7 +95,7 @@ public class Movement : MonoBehaviour
     }
 
     public bool isFighting(){
-        return _anims.GetAnim().GetBool("fighting");
+        return player.IsFighting;
     }
     
     public Vector2 GetMovement(){            

@@ -12,7 +12,6 @@ public class Debugger_ : MonoBehaviour
     public TMP_Text _trigger;       
     public GameObject _panel;
     public GameObject _panel2;
-    public Animations _anims;
     public GameObject _light;
     public GameController _gm;
     public Player _player;
@@ -65,12 +64,10 @@ public class Debugger_ : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Q) && toggled){       //ARMED
                 _player.GoArmed();
-                _anims.Armed();
             }
 
             if (Input.GetKeyDown(KeyCode.C) && toggled)  {       //CHEST
                 _player.GoChested();
-                _anims.Chested();
             }
 
                 

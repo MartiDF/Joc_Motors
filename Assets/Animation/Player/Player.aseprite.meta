@@ -2,7 +2,147 @@ fileFormatVersion: 2
 guid: 51c8f0f38ef71f44299ac328d6c052f7
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Armed_Back_Idle
+    second: {fileID: 7400000, guid: e897e2ac7ca2498498d20d61e4b26e8f, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Armed_Back_Walk
+    second: {fileID: 7400000, guid: ac99b19789ef2dc44b1ffbc61c3854c3, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Armed_Back_attack
+    second: {fileID: 7400000, guid: 2b5a46e0614550d4eaab0bca309e2873, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Armed_Frontal_Attack
+    second: {fileID: 7400000, guid: 31d1d250ffa2f3c43bd27b22cc994e2e, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Armed_Frontal_Idle
+    second: {fileID: 7400000, guid: 25f59039e69053947bf635e4b56d1a5c, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Armed_Frontal_Walk
+    second: {fileID: 7400000, guid: 0c48ba77249ee244ea553cfabdf8e4ad, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Armed_LeftSide_Attack
+    second: {fileID: 7400000, guid: c6bde000c44081f45aefd86590289292, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Armed_LeftSide_Idle
+    second: {fileID: 7400000, guid: d74ed68da7320894497eec8c1fbf81de, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Armed_LeftSide_Walk
+    second: {fileID: 7400000, guid: 624e377e33fd9af489d35a4aff4d97ff, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Armed_RightSide_Attack
+    second: {fileID: 7400000, guid: 8c80961a015ed6d42b944f42900eeef9, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Armed_RightSide_Idle
+    second: {fileID: 7400000, guid: caa0a1ad89c892b40be0c49b3bed26b6, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Armed_RightSide_Walk
+    second: {fileID: 7400000, guid: b1f61b3a0bea6334f84ae52367f4b2bf, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Back_Attack
+    second: {fileID: 7400000, guid: de28017268026994fae706c0d9f1cd93, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Back_Death
+    second: {fileID: 7400000, guid: 4b4ed1e32a845434ab0d48ec64d40a98, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Back_Idle
+    second: {fileID: 7400000, guid: dd6c8fc2692a3b048a9869f1117d645c, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Back_Walk
+    second: {fileID: 7400000, guid: d01cdfc1db9609942b303f9a606c8776, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Frontal_Attack
+    second: {fileID: 7400000, guid: 996168dd00099ce45887706c96a98f48, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Frontal_Death
+    second: {fileID: 7400000, guid: 52807cb8d99b3be43a113041c7b3f0ae, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Frontal_Idle
+    second: {fileID: 7400000, guid: 4ceae0dc664abde46b1c1a574683cb85, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Frontal_Walk
+    second: {fileID: 7400000, guid: 824aaef24e375b943b9df9da1d8195ca, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: LeftSide_Attack
+    second: {fileID: 7400000, guid: 570220a57fe13fc48b69d77df8e8ea1a, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: LeftSide_Death
+    second: {fileID: 7400000, guid: 1a3f45589cd984c439bf1e1ffb4f367f, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: LeftSide_Idle
+    second: {fileID: 7400000, guid: 624f711721e73054b84c70816a0e6f94, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: LeftSide_Walk
+    second: {fileID: 7400000, guid: 2781285edc0d9c64886ceffa725e9b32, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: RightSide_Attack
+    second: {fileID: 7400000, guid: 0e943f72f48a7ff498b361b1f16d51ae, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: RightSide_Death
+    second: {fileID: 7400000, guid: 33197eea6472a8045b6037629cd7c194, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: RightSide_Idle
+    second: {fileID: 7400000, guid: c28d543ef007d8a4c9f00078ed8ea28d, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: RightSide_Walk
+    second: {fileID: 7400000, guid: 90787d840afc4334bba0964871fdbb3a, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -95,7 +235,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638419939631339159
+  platformSettingsDirtyTick: 638420817322117225
   textureAssetName: 
   singleSpriteImportData:
   - name: 
