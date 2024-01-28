@@ -111,6 +111,12 @@ public class Enemic : MonoBehaviour
         return maze.EsViable(novaPosicio[0], novaPosicio[1]);
     }
 
+    public int[] posicioEnemic()
+    {
+        int[] posActual = (int[])posicio.Clone();
+        return posActual;
+    }
+
     private int[] posibleMoviment(int n)
     {
         int[] novaposicio = (int[])posicio.Clone();
