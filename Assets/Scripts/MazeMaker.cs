@@ -88,8 +88,6 @@ public class MazeMaker : MonoBehaviour
         // Establece la instancia
         _instance = this;
 
-        // Opcional: Asegúrate de que el singleton sobreviva a los cambios de escena
-        DontDestroyOnLoad(gameObject);
     }
 
     public int getRelativeSpawnX()

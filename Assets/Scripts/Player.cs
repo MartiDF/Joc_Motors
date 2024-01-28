@@ -12,11 +12,14 @@ public class Player : MonoBehaviour
     private bool _inConsumable, _inSword, _inChest, _inFight, _inSpawn;
     private bool _chested, _unarmed;
     private Collider2D _currentCollider;
+    public Score _puntuacio;
+    private float puntenemic= 250;
 
     public void Start()
     {
         _anims = GetComponent<Animations>();
         _gm = GameObject.Find("GameManager").GetComponent<GameController>();
+        _puntuacio = GameObject.Find("Scorenumber").GetComponent<Score>();
     }
 
     /* GETTERS */
@@ -138,6 +141,7 @@ public class Player : MonoBehaviour
             SetStamina(!_unarmed ? _gm.GetStaminaFightArmed() : _gm.GetStaminaFight());
             obj.gameObject.GetComponent<Enemic>().GetHit(_stamina <= 0);
             _unarmed = true;
+            _puntuacio.Sumarpunts(puntenemic);
         }
         else
         {

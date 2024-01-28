@@ -27,6 +27,12 @@ public class GameController : MonoBehaviour
     public UnityEngine.Tilemaps.Tile _cofreTile;
     public UnityEngine.Tilemaps.Tile _espasaTile;
 
+    public Score _puntuacio;
+    private float puntpas=0.005f;
+    private float puntguanyar=10000;
+    private float puntcons= 50;
+    private float puntobjecte= 200;
+
 
     /* GAME OBJECTS */
     [Range(-0.01f, -1f)] public float _staminaFight = -0.3f;
@@ -49,6 +55,7 @@ public class GameController : MonoBehaviour
         _tileMapConsumibles = GameObject.Find("Maze").transform.GetChild(0).transform.GetChild(1).GetComponent<Tilemap>();
         _anims = GameObject.Find("Player").GetComponent<Animations>();
         _triggers = GameObject.Find("Maze").transform.GetChild(1).gameObject;
+        _puntuacio = GameObject.Find("Scorenumber").GetComponent<Score>();
     }
 
     void Update(){
@@ -79,6 +86,8 @@ public class GameController : MonoBehaviour
     }
 
     public void Guanyar(){
+        _puntuacio.Sumarpunts(puntguanyar);
+        _puntuacio.Sumarpunts(_player.GetStamina()*5);
         _winPanel.SetActive(true);
     }
 
@@ -95,16 +104,19 @@ public class GameController : MonoBehaviour
 
     private void GetConsumable() {
         DeleteTile();
+        _puntuacio.Sumarpunts(puntobjecte);
+        _puntuacio.Sumarpunts(puntcons);
         _player.SetStamina(GetStaminaConsumable());
         
     }
 
     private void GetSword() {
-        
+        _puntuacio.Sumarpunts(puntobjecte);
         DeleteTile();
         if (_player.GetIsChested())
         {
             Debug.Log("Deixar Cofre");
+            puntpas=1;
             Vector3Int positions = _tileMapConsumibles.WorldToCell(_player.transform.position);
             _tileMapConsumibles.SetTile(new Vector3Int(positions.x - 1, positions.y - 1, 0), _cofreTile);
             GameObject nouTrigger = Instantiate(_cofreTrigger, _tileMapConsumibles.GetCellCenterWorld(_tileMapConsumibles.WorldToCell(new Vector3Int(positions.x - 1, positions.y - 1, 0))), Quaternion.identity);
@@ -116,7 +128,8 @@ public class GameController : MonoBehaviour
 
     private void GetChest() {
         DeleteTile();
-
+        _puntuacio.Sumarpunts(puntobjecte);
+        puntpas=3;
         if (_player.GetIsArmed())
         {
             Debug.Log("Deixar Espasa");
@@ -139,7 +152,11 @@ public class GameController : MonoBehaviour
         }
 
         if (_movement.isWalking())
+        {
+            _puntuacio.Sumarpunts(puntpas);
             _player.SetStamina(_staminaWalk / 10000);
+
+        }
     }
 
     //Control de consumibles i triggers del jugador
