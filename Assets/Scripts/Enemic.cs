@@ -78,7 +78,6 @@ public class Enemic : MonoBehaviour
     private bool playerFound(int[] aRevisar)
     {
         int[] posPlayer = PosicioJugador();
-        //Debug.Log("Miro "+ aRevisar[0]+", "+ aRevisar[1]+", i el jugador es a: "+(posPlayer[0])+", " +(posPlayer[1]));
         return aRevisar[0] == posPlayer[0] && aRevisar[1] == posPlayer[1];
     }
 
@@ -96,23 +95,20 @@ public class Enemic : MonoBehaviour
     private void vigilancia(int n)
     {
         int[] posAct = PosicioEnemic();
-        //Debug.Log("Pos inicial x:" + posAct[0] + ", Pos inicial y: " + posAct[1]);
         bool transitable = true;
         bool viaLliure = true;
         int i = 0;
         int[] aRevisar = posibleMoviment(n);
         while (i < RangDeVisio && transitable && viaLliure)
         {
-            //Debug.Log("Pos x:" + aRevisar[0] + ", Pos y: " + aRevisar[1]);
             if (!maze.EsViable(aRevisar[0], aRevisar[1]))
             {
                 transitable = false;
-                //Debug.Log("chocho");
             }
 
             else {
                 int[] auxRevisor = aRevisar;
-                aRevisar = rangDeVigilancia(n, auxRevisor); //Debug.Log("chichi");
+                aRevisar = rangDeVigilancia(n, auxRevisor);
             }
              if (playerFound(aRevisar)) { viaLliure = false;}
             i++;
@@ -120,7 +116,6 @@ public class Enemic : MonoBehaviour
         if (!viaLliure) {
             localitzat = aRevisar;
             isFollowing = true;
-            Debug.Log("peseta");
         }
         
     }
@@ -173,7 +168,7 @@ public class Enemic : MonoBehaviour
     {
         int[] posActual = PosicioEnemic();
         if (x < posActual[0]) return 1;
-        else if (y < posActual[1]) return 2;
+        else if (y > posActual[1]) return 2;
         else if (x > posActual[0]) return 3;
         else if (y < posActual[1]) return 4;
         else return 0;
@@ -190,7 +185,6 @@ public class Enemic : MonoBehaviour
             int j = UnityEngine.Random.Range(0, direccions.Count);
             direccio = direccions[j];
             if (!estaDisponible(direccio)) {
-                // Debug.Log("borrant direccio "+direccio);
                 direccions.Remove(direccio);
             }
             else direccioDisponible = true;
@@ -221,35 +215,11 @@ public class Enemic : MonoBehaviour
 
     private void Persegueix()
     {
-        int[] novaPosAux = aconsegueixCami();
+        int[] novaPosAux = pathfinding.TrobarSegCasella(PosicioJugador(),PosicioEnemic());
+        moveSpeed += 0.5f;
         newDirection(novaPosAux[0], novaPosAux[1]);
         ChangeState();
         novaPosicio = new Vector2(novaPosAux[0], novaPosAux[1]);
-    }
-
-    
-
-    private int[] aconsegueixCami()
-    {
-        //currentPathIndex = 0;
-
-        pathVectorList = pathfinding.FindPath(PosicioJugador(),PosicioEnemic());
-
-        if(pathVectorList != null)
-        {
-            int dx = (int)pathVectorList[0].x;
-            int dy = (int)pathVectorList[0].y;
-
-            int[] novaCella = { dx, dy };
-
-            return novaCella;
-
-        }
-        else {
-            obternirNovaDireccio();
-            Debug.Log("No he pogut fer un cami");
-            return posibleMoviment(Direction);
-        }
     }
 
     internal void Die()

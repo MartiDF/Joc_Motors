@@ -18,7 +18,6 @@ public class Animations : MonoBehaviour
 
     public void Armed_attack()
     {
-        Debug.Log("CHIRLI");
         anim.SetBool("unarmed", false);
         anim.SetBool("chest", false);
         anim.SetBool("fighting", true);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,209 +9,152 @@ public class Pathfinding : MonoBehaviour
 {
     public static Pathfinding Instance { get; private set; }
 
-    private const int MOVE_DIAGONAL_COST = 9999999;
-    private const int MOVE_STRAIGHT_COST = 10;
-
     private MazeMaker maze;
-    private Enemic enemic;
+    private Tilemap mapa;
 
-    private List<PathNode> openList;
-    private HashSet<PathNode> closedList;
-    private int[] posEnemic = { 0, 0 };
-    private int[] posJugador = { 0, 0 };
+    private int[,] mapaDistancia;
 
-    private void Start()
-    {
-        maze = MazeMaker.Instance;
-
-    }
+    private Vector2 posEnemic;
+    private Vector2 posJugador;
 
     public Pathfinding()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        maze = MazeMaker.Instance;
+        mapa = maze.mapaTerreny;
+
+        mapaDistancia = new int[maze.tamany, maze.tamany];
         
-    }
-
-    //public void GetPosicions()
-    //{
-    //    posJugador = enemic.PosicioJugador();
-    //    posEnemic = enemic.PosicioEnemic();
-    //}
-
-    public List<Vector2> FindPath(int[] posJ, int[] posE)
-    {
-        posJugador = posJ;
-        posEnemic = posE;
-        List<PathNode> path = FindingThePath();
-        if (path == null) return null;
-        else{
-            List<Vector2> vectorPath = new List<Vector2>();
-            foreach(PathNode pathNode in path)
-            {
-                vectorPath.Add(new Vector2(pathNode.x, pathNode.y) * maze.tamany + Vector2.one * maze.tamany * 5f);
-            }
-            return vectorPath;
-        }
-    }
-
-    public List<PathNode> FindingThePath()
-    {
-        //GetPosicions();
-
-        PathNode startNode = new PathNode(maze, posEnemic[0], posEnemic[1]);
-        PathNode endNode = new PathNode(maze, posJugador[0], posJugador[1]);
-
-        openList = new List<PathNode> { startNode };
-        closedList = new HashSet<PathNode>();
-
+        var min = mapa.localBounds.min;
         for (int i = 0; i < maze.tamany; i++)
         {
             for (int j = 0; j < maze.tamany; j++)
             {
-                PathNode pathnode = new PathNode(maze, i, j);
-                pathnode.gCost = int.MaxValue;
-                pathnode.CalculateFCost();
-                pathnode.cameFromNode = null;
+                int mapaX = (int)(i + min.x);
+                int mapaY = (int)(j + min.y);
+
+                var tile = mapa.GetTile(new Vector3Int(mapaX, mapaY, 0));
+                if (tile.name.StartsWith("TileMur_")) mapaDistancia[i, j] = -1; // Si és un mur, posem un -1
+                else mapaDistancia[i, j] = 0;
             }
         }
+    }
 
-        startNode.gCost = 0;
-        startNode.hCost = CalculateDistanceCost(startNode, endNode);
-        startNode.CalculateFCost();
-
-        while (openList.Count > 0)
+    // Reseteja a 0 totes les caselles que han de tenir un 0 (terra)
+    void NetejarMapaDistancia()
+    {
+        for (int i = 0; i < maze.tamany; i++)
         {
-            PathNode currentNode = GetLowestFCostNode(openList);
-            if (currentNode == endNode)
+            for (int j = 0; j < maze.tamany; j++)
             {
-                //Hem arribat al node final
-                return CalculatePath(endNode);
-            }
-            else
-            {
-                openList.Remove(currentNode);
-                closedList.Add(currentNode);
-
-                foreach (PathNode neightbourNode in GetNeighbourList(currentNode))
-                {   
-                    if (closedList.Contains(neightbourNode)) continue;
-                    
-                    if (!neightbourNode.isItWalkable(neightbourNode.x, neightbourNode.y))
-                    {
-                        closedList.Add(neightbourNode);
-                        continue;
-                    }
-                    int tentativeGCost = currentNode.gCost + CalculateDistanceCost(currentNode, neightbourNode);
-                    if (tentativeGCost < currentNode.gCost)
-                    {
-                        neightbourNode.cameFromNode = currentNode;
-                        neightbourNode.gCost = tentativeGCost;
-                        neightbourNode.hCost = CalculateDistanceCost(neightbourNode, endNode);
-                        neightbourNode.CalculateFCost();
-
-                        if (!openList.Contains(neightbourNode)) openList.Add(neightbourNode);
-                    }
-                    
-                }
+                if (mapaDistancia[i, j] != -1)
+                    mapaDistancia[i, j] = 0;
             }
         }
-        //Ens hem quedat sens nodes que mirar i per tant no existeix un camí transitable
-        return null;
     }
 
-    private List<PathNode> GetNeighbourList(PathNode currentNode)
+    // Emplenem el mapa amb valors heurístics calculats arrel de les posicions de l'enemic i el jugador
+    void EmplenarMapaDistancia(Vector3Int start, Vector3Int end)
     {
-        List<PathNode> neighbourList = new List<PathNode>();
+        // No podem ser a sobre d'un mur
+        if (mapaDistancia[start.x, start.y] == -1 || mapaDistancia[end.x, end.y] == -1) return;
 
-        int[] dx = { -1, 1, 0, 0 }; // Desplazamientos en x para izquierda, derecha, sin cambio
-        int[] dy = { 0, 0, -1, 1 }; // Desplazamientos en y para arriba, abajo, sin cambio
+        int distancia = 1;
+        Queue<Vector3Int> caselles = new Queue<Vector3Int>(); // Cua de caselles que hem d'anar mirant
+        mapaDistancia[end.x, end.y] = 1; // L'objectiu té un valor 1
+        caselles.Enqueue(end);
 
-        for (int i = 0; i < dx.Length; i++)
+        // Mentre hi hagin caselles per visitar
+        while(caselles.Count > 0)
         {
-            int newX = currentNode.x + dx[i];
-            int newY = currentNode.y + dy[i];
+            distancia++;
 
-            if (newX >= 0 && newX < maze.tamany && newY >= 0 && newY < maze.tamany)
-            {
-                neighbourList.Add(GetNode(newX, newY));
-            }
+            // Mirem les caselles al voltant de la casella actual
+            Vector3Int casella = caselles.Dequeue();
+            Visitar(caselles, distancia, casella.x, casella.y + 1);
+            Visitar(caselles, distancia, casella.x, casella.y - 1);
+            Visitar(caselles, distancia, casella.x + 1, casella.y);
+            Visitar(caselles, distancia, casella.x - 1, casella.y);
         }
-        return neighbourList;
-
-
-
-        //if (currentNode.x - 1 >= 0)
-        //{
-            //Esquerra
-        //    neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y));
-
-            //Diagonal inferior esquerra
-        //    if (currentNode.y - 1 >= 0) neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y - 1));
-
-            //Diagonal superior esquerra
-        //    if (currentNode.y + 1 < maze.tamany) neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y + 1));
-        //}
-        //if (currentNode.x + 1 < maze.tamany)
-        //{
-            //Dreta
-        //    neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y));
-
-            //Diagonal inferior dreta
-        //    if (currentNode.y - 1 >= 0) neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y - 1));
-
-            //Diagonal superior dreta
-        //    if (currentNode.y + 1 < maze.tamany) neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y + 1));
-        //}
-
-        //Abaix
-        //if (currentNode.y - 1 >= 0) neighbourList.Add(GetNode(currentNode.x, currentNode.y - 1));
-
-        //Adalt
-        //if (currentNode.y + 1 < maze.tamany) neighbourList.Add(GetNode(currentNode.x, currentNode.y + 1));
-
-        //return neighbourList;
     }
 
-    private PathNode GetNode(int x, int y)
+    // Mira la casella i li aplica una distancia
+    void Visitar(Queue<Vector3Int> caselles, int distancia, int x, int y)
     {
-        PathNode node = new PathNode(maze, x, y);
-        return node;
-    }
+        // Aixo mai hauria de passar per com es el nostre mapa, pero ho mirarem de totes maneres
+        if (x < 0 || x >= maze.tamany) return;
+        if (y < 0 || y >= maze.tamany) return;
 
-
-    private List<PathNode> CalculatePath(PathNode endNode)
-    {
-        List<PathNode> path = new List<PathNode>();
-        path.Add(endNode);
-        PathNode currentNode = endNode;
-        while (currentNode.cameFromNode != null)
+        // Si la casella no esta visitada, escriurem la distancia i la encuem
+        if (mapaDistancia[x,y] == 0)
         {
-            path.Add(currentNode.cameFromNode);
-            currentNode = currentNode.cameFromNode;
+            mapaDistancia[x,y] = distancia;
+            caselles.Enqueue(new Vector3Int(x,y,0));
         }
-        path.Reverse();
-        return path;
     }
 
-    private int CalculateDistanceCost(PathNode a, PathNode b)
+    // Observa les caselles colindants a casella i retorna la que tingui un valor més petit. D'aquesta manera, no hem de computar tota la ruta.
+    int[] ObtenirCasella(Vector3Int casella)
     {
-        int xDistance = Mathf.Abs(a.x - b.x);
-        int yDistance = Mathf.Abs(a.y - b.y);
-        int remaining = Mathf.Abs(xDistance - yDistance);
-        return MOVE_DIAGONAL_COST * Mathf.Min(xDistance, yDistance) + MOVE_STRAIGHT_COST * remaining;
+        int min = int.MaxValue;
+        int xMin = -1, yMin = -1;
+        int x = casella.x; int y = casella.y;
 
+        // Mirem al voltant i tractem d'obtenir la menor distancia possible
+        TrobarCasellaMinima(x, y+1, ref xMin, ref yMin, ref min);
+        TrobarCasellaMinima(x, y-1, ref xMin, ref yMin, ref min);
+        TrobarCasellaMinima(x+1, y, ref xMin, ref yMin, ref min);
+        TrobarCasellaMinima(x-1, y, ref xMin, ref yMin, ref min);
+
+        // Enviem la casella en coordenades de món
+        Vector3 global = ToGlobal(new Vector3Int(xMin, yMin));
+
+        return new int[] { (int)global.x, (int)global.y };
     }
 
-    private PathNode GetLowestFCostNode(List<PathNode> pathNodeList)
+    // Actualitza xMin, yMin i min amb els valors corresponents si la casella actual té una distancia menor que (xMin,yMin)
+    void TrobarCasellaMinima(int xAct, int yAct, ref int xMin, ref int yMin, ref int min)
     {
-        PathNode lowestFCostNode = pathNodeList[0];
-        for (int i = 1; i < pathNodeList.Count; i++)
-        {
-            if (pathNodeList[i].fCost < lowestFCostNode.fCost)
-            {
-                lowestFCostNode = pathNodeList[i];
-            }
+        int distancia = mapaDistancia[xAct, yAct];
+        if (distancia == -1) return;
+        if (min == int.MaxValue || distancia < min) 
+        { 
+            xMin = xAct; 
+            yMin = yAct;
+            min = distancia; 
         }
-        return lowestFCostNode;
+    }
+
+    // Retorna la casella a la que ha d'anar l'enemic
+    public int[] TrobarSegCasella(int[] posJ, int[] posE)
+    {
+        // Passem les posicions de món a coordenades del mapa de distancia
+        Vector3Int start = ToLocal(new Vector3(posE[0], posE[1], 0));
+        Vector3Int end = ToLocal(new Vector3(posJ[0], posJ[1], 0));
+
+        NetejarMapaDistancia();
+        EmplenarMapaDistancia(start, end);
+
+        // Nosaltres no volem trobar tota la ruta, només la primera casella a la que ens hem de moure!
+        return ObtenirCasella(start);
+    }
+
+
+    Vector3Int ToLocal(Vector3 World)
+    {
+        var local = World - mapa.transform.position - mapa.localBounds.min;
+
+        return new Vector3Int((int)local.x - 1, (int)local.y - 1, 0);
+    }
+
+    Vector3 ToGlobal(Vector3Int local)
+    {
+        var f_local = new Vector3(local.x + 1, local.y + 1, 0);
+
+        return f_local + transform.position + mapa.localBounds.min;
     }
 }

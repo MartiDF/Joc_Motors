@@ -70,7 +70,6 @@ public class Movement : MonoBehaviour
                 if (enemyCanMove)
                 {
                     enemyCanMove = false;
-                    //Debug.Log("AMS");
                     _mazeMaker.FerTornEnemics();
                 }
                 transform.position = Vector3.MoveTowards(transform.position, (destinationPosition), moveSpeed * Time.deltaTime);
