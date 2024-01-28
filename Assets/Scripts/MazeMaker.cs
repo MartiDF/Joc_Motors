@@ -952,7 +952,6 @@ public class MazeMaker : MonoBehaviour
                 if (pos == posEnemic) { viable = false; break; }
             }
         }
-        // Debug.Log("Es buida "+pos+"? "+EstaBuida(x,y));
         return viable && EstaBuida(x, y) && (tresor==null || tresor!=null && posTresor != pos) && pos.x != SpawnX && pos.y != SpawnY;
     }
 }

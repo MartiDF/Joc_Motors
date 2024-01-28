@@ -16,11 +16,18 @@ public class Animations : MonoBehaviour
         _movement = GetComponent<Movement>();
     }
 
-    public void Fight()
-    {        
+    public void Armed_attack()
+    {
         anim.SetBool("unarmed", false);
-        anim.Play("Fight");
-        anim.SetBool("Fight", true);
+        anim.SetBool("chest", false);
+        anim.SetBool("fighting", true);
+    }
+
+    public void Unarmed_attack()
+    {        
+        anim.SetBool("unarmed", true);
+        anim.SetBool("chest", false);
+        anim.SetBool("fighting", true);
     }
 
     // Update is called once per frame
@@ -28,7 +35,8 @@ public class Animations : MonoBehaviour
     {        
         movement_vector = _movement.GetMovement() * Time.fixedDeltaTime;
 
-        if(!anim.GetBool("Fight")){
+        if(!anim.GetBool("fighting"))
+        {
 
             anim.SetFloat("X",movement_vector.x);
             anim.SetFloat("Y",movement_vector.y);       
@@ -62,7 +70,7 @@ public class Animations : MonoBehaviour
     }
     public void OutFight()
     {
-        anim.SetBool("Fight", false);
+        anim.SetBool("fighting", false);
 
         if (anim.GetBool("chest"))
             Chested();
@@ -73,75 +81,24 @@ public class Animations : MonoBehaviour
     public Animator GetAnim(){
         return anim;
     }
+
+    public bool isArmed()
+    {
+        return anim.GetBool("unarmed");
+    }
 }
 
-public class Enemies_Animations : MonoBehaviour
+public class PlayerAnimationStates
 {
-    Rigidbody2D rbody;
-    private Animator anim;
-    private Movement _movement;
-    Vector2 movement_vector = new Vector2();
-
-    void Start()
-    {
-        rbody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        _movement = GetComponent<Movement>();
-    }
-
-    public void Fight()
-    {
-        anim.SetBool("Patrol", false);
-        anim.Play("Fight");
-        anim.SetBool("Fight", true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        movement_vector = _movement.GetMovement() * Time.fixedDeltaTime;
-
-        if (!anim.GetBool("Fight"))
-        {
-
-            anim.SetFloat("X", movement_vector.x);
-            anim.SetFloat("Y", movement_vector.y);
-
-            if (movement_vector != Vector2.zero)
-                anim.SetBool("patrolling", true);
-            else
-                anim.SetBool("patrolling", false);
-        }
-    }
-
-    public void Die()
-    {
-        anim.Play("Die");
-    }
-
-    public void Patrol()
-    {
-        anim.SetBool("player_on_sight", false);
-        anim.SetBool("following", false);
-        anim.SetBool("attacking", false);
-    }
-    public void Following()
-    {
-        anim.SetBool("player_on_sight", true);
-        anim.SetBool("following", true);
-        anim.SetBool("attacking", false);
-    }
-    public void Attacking()
-    {
-        anim.SetBool("player_on_sight", true);
-        anim.SetBool("following", true);
-        anim.SetBool("attacking", true);
-    }
-    
-
-    public Animator GetAnim()
-    {
-        return anim;
-    }
+    //Animation states
+    public const string SIDE = "LeftSide_Idle";
+    public const string BACK_IDLE = "Back_Idle";
+    public const string FRONT = "Front_Idle";
+    public const string SIDE_ATTACK = "LeftSide_Attack";
+    public const string SIDE_DEATH = "LeftSide_Death";
+    public const string FRONT_ATTACK = "Frontal_Attack";
+    public const string FRONT_DEATH = "Frontal_Death";
+    public const string BACK_ATTACK = "Back_Attack";
+    public const string BACK_DEATH = "Back_Death";
 }
 

@@ -128,8 +128,10 @@ public class Player : MonoBehaviour
     
     /* METHODS */
     public void GoFight(Collider2D obj) {
-        if (obj == null) return; 
-        _anims.Fight(); 
+        if (obj == null) return;
+        if (_anims.isArmed()) _anims.Armed_attack();
+        else _anims.Unarmed_attack();
+                
         if (obj.CompareTag("Enemy"))
         {
             SetStamina(_armed ? _gm.GetStaminaFightArmed() : _gm.GetStaminaFight());

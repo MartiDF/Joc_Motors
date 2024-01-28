@@ -680,7 +680,7 @@ AnimatorTransition:
     m_ConditionEvent: armed
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Fight
+    m_ConditionEvent: fighting
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8591815173384626587}
@@ -2111,7 +2111,7 @@ AnimatorTransition:
     m_ConditionEvent: armed
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Fight
+    m_ConditionEvent: fighting
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4232423078890776923}
@@ -2880,43 +2880,43 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: walking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: chest
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: unarmed
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 1
-    m_Controller: {fileID: 9100000}
-  - m_Name: Fight
+    m_Controller: {fileID: 0}
+  - m_Name: fighting
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: X
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Y
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: MAIN
@@ -3903,7 +3903,7 @@ AnimatorTransition:
     m_ConditionEvent: armed
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Fight
+    m_ConditionEvent: fighting
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3336764825045334824}
@@ -4123,7 +4123,7 @@ AnimatorTransition:
     m_ConditionEvent: armed
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Fight
+    m_ConditionEvent: fighting
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8591815173384626587}

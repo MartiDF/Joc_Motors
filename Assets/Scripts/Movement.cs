@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEditor.PlayerSettings;
+using static UnityEngine.Rendering.DebugUI;
 public class Movement : MonoBehaviour
 {
     [Range(0.5f,10f)]
@@ -10,12 +13,14 @@ public class Movement : MonoBehaviour
     public float heightOffset = 0.3f;
     private Tilemap _tilemap; 
     private Vector3 destinationPosition; 
-    private Vector3Int currentCellPosition; 
+    public Vector3Int currentCellPosition; 
     private Animations _anims;
     private MazeMaker _mazeMaker;
     private float verticalInput, horizontalInput;
 
     private bool enemyCanMove = false;
+
+    private List<Enemic> enemics = new List<Enemic>();
 
     void Start()
     {   
@@ -62,27 +67,20 @@ public class Movement : MonoBehaviour
                 if (enemyCanMove)
                 {
                     enemyCanMove = false;
-                    Debug.Log("AMS");
+                    //Debug.Log("AMS");
                     _mazeMaker.FerTornEnemics();
                 }
                 transform.position = Vector3.MoveTowards(transform.position, (destinationPosition), moveSpeed * Time.deltaTime);
             }
         }
-
-        if (Input.GetButtonDown("Submit"))
-        {
-            //Debug.Log("Enemics a mover la bochaina");
-            _mazeMaker.FerTornEnemics();
-        }
     }
-
 
     public bool isWalking(){
         return horizontalInput!=0 || verticalInput!=0;
     }
 
     public bool isFighting(){
-        return _anims.GetAnim().GetBool("Fight");
+        return _anims.GetAnim().GetBool("fighting");
     }
     
     public Vector2 GetMovement(){            

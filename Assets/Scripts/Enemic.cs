@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.XR;
 
 public class Enemic : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed = 4.0f;
+    private float moveSpeed = 3.0f;
     public EnemyStates state = EnemyStates.Idle;
     public int Direction { get; private set; } = 0;
     public bool StayAlive { get; private set; } = false;
@@ -17,7 +18,12 @@ public class Enemic : MonoBehaviour
     private Vector2 novaPosicio;
 
     private MazeMaker maze;
+    private Movement movement;
     private EnemyAnimatorController animController;
+
+    public int RangDeVisio = 6;
+    private int[] localitzat = { 0, 0 };
+    private bool isFollowing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,8 +49,33 @@ public class Enemic : MonoBehaviour
     public void FerTorn()
     {
         // veure si s'ha de moure, si ha d'atacar, si esta atentitisimo
-        Moure();
-        ChangeState();
+        if (!isFollowing) {
+            Patrulla();
+            vigilancia(Direction);
+        }
+        else
+        {
+            actualitzaLocalitzat();
+            Persegueix();
+        }
+        
+    }
+
+    public int[] posicioJugador()
+    {
+        int[] posPlayer = new int[] { movement.currentCellPosition.x, movement.currentCellPosition.y };
+        return posPlayer;
+    }
+
+    private bool playerFound(int[] aRevisar)
+    {
+        int[] posPlayer = posicioJugador();
+        return aRevisar == posPlayer;
+    }
+
+    private void actualitzaLocalitzat()
+    {
+        localitzat = posicioJugador();
     }
 
     public void ChangeState(EnemyStates newState = EnemyStates.Idle)
@@ -54,13 +85,23 @@ public class Enemic : MonoBehaviour
         animController.ChangeAnimationState();
     }
 
-    private void Moure() // Com punyetes se mou realment. Un misteri
+    private void vigilancia(int n)
     {
-        obternirNovaDireccio();
-        int[] novaPosAux = posibleMoviment(Direction);
-        novaPosicio = new Vector2(novaPosAux[0], novaPosAux[1]);
-        // Debug.Log(posicio[0]+", " + posicio[1]+"; i anem cap a "+novaPosicio);
-        direccions = new List<int>() { 1, 2, 3, 4 };
+        bool transitable = true;
+        bool viaLliure = true;
+        int i = 0;
+        int[] aRevisar = posibleMoviment(n);
+        while (i < RangDeVisio && transitable && viaLliure)
+        {
+            if (!maze.EsViable(aRevisar[0], aRevisar[1])) transitable = false;
+            else aRevisar = posibleMoviment(n);
+            i++;
+            if (playerFound(aRevisar)) viaLliure = false;
+        }
+        if (!viaLliure) {
+            localitzat = aRevisar;
+            isFollowing = true;
+        }
     }
 
     private bool estaDisponible(int n)
@@ -109,10 +150,26 @@ public class Enemic : MonoBehaviour
         if(direccions.Count == 0) Direction = direccioAnt;
         else Direction = direccio;
     }
+
     public void GetHit(bool playerDied = false)
     {
         ChangeState(EnemyStates.Attacking);
         StayAlive = playerDied;
+    }
+
+    private void Patrulla() // Com punyetes se mou realment. Un misteri
+    {
+        obternirNovaDireccio();
+        int[] novaPosAux = posibleMoviment(Direction);
+        ChangeState();
+        novaPosicio = new Vector2(novaPosAux[0], novaPosAux[1]);
+        // Debug.Log(posicio[0]+", " + posicio[1]+"; i anem cap a "+novaPosicio);
+        direccions = new List<int>() { 1, 2, 3, 4 };
+    }
+
+    private void Persegueix()
+    {
+        throw new NotImplementedException();
     }
 
     internal void Die()
