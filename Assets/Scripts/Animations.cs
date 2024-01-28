@@ -26,7 +26,8 @@ public class Animations : MonoBehaviour
     }
 
     public void Unarmed_attack()
-    {        
+    {
+        Debug.Log("CONEJO");
         anim.SetBool("unarmed", true);
         anim.SetBool("chest", false);
         anim.SetBool("fighting", true);
@@ -52,23 +53,21 @@ public class Animations : MonoBehaviour
        
     public void Die()
     {
-        anim.Play("Die");
+        anim.Play("Frontal_Death");
     }
 
     public void Unarmed(){
         anim.SetBool("chest",false);
-        anim.SetBool("armed",false);
         anim.SetBool("unarmed",true);
     }
     public void Armed(){
+        anim.SetBool("chest", false);
         anim.SetBool("unarmed",false);
-        anim.SetBool("armed",true);
-        anim.SetBool("chest",false);
+        
     }
     public void Chested(){
         anim.SetBool("chest",true);
-        anim.SetBool("unarmed",false);
-        anim.SetBool("armed",false);        
+        anim.SetBool("unarmed",true); 
     }
     public void OutFight()
     {
@@ -84,23 +83,9 @@ public class Animations : MonoBehaviour
         return anim;
     }
 
-    public bool isArmed()
+    public bool isUnarmed()
     {
         return anim.GetBool("unarmed");
     }
-}
-
-public class PlayerAnimationStates
-{
-    //Animation states
-    public const string SIDE = "LeftSide_Idle";
-    public const string BACK_IDLE = "Back_Idle";
-    public const string FRONT = "Front_Idle";
-    public const string SIDE_ATTACK = "LeftSide_Attack";
-    public const string SIDE_DEATH = "LeftSide_Death";
-    public const string FRONT_ATTACK = "Frontal_Attack";
-    public const string FRONT_DEATH = "Frontal_Death";
-    public const string BACK_ATTACK = "Back_Attack";
-    public const string BACK_DEATH = "Back_Death";
 }
 
