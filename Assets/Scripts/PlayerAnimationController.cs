@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
@@ -14,7 +12,8 @@ public class PlayerAnimationController : MonoBehaviour
     }
     private void Update()
     {
-        if (player.IsFighting)
+        if (player.IsDead) animator.Play(PlayerAnimations.DEATH);
+        else if (player.IsFighting)
         {
             if (player.IsArmed)
             {

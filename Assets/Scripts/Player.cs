@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -138,13 +135,10 @@ public class Player : MonoBehaviour
     public void GoFight(Collider2D obj) {
         if (obj == null) return;
         IsFighting = true;
-
-                
         if (obj.CompareTag("Enemy"))
         {
             SetStamina(IsArmed ? _gm.GetStaminaFightArmed() : _gm.GetStaminaFight());
             obj.gameObject.GetComponent<Enemic>().GetHit(_stamina <= 0);
-            _unarmed = true;
             _puntuacio.Sumarpunts(puntenemic);
         }
     }

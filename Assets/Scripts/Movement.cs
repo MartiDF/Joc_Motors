@@ -1,10 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.Rendering.DebugUI;
 public class Movement : MonoBehaviour
 {
     public static Movement Instance { get; private set; }
