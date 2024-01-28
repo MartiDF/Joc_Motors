@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PathNode : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PathNode : MonoBehaviour
     public int gCost;
     public int hCost;
     public int fCost;
+    public bool isWalkable;
 
     public PathNode cameFromNode;
 
@@ -19,6 +21,12 @@ public class PathNode : MonoBehaviour
         this.maze = maze;
         this.x = x;
         this.y = y;
+        isWalkable = true;
+    }
+
+    public bool isItWalkable(int x, int y)
+    {
+        return maze.EstaBuida(x, y);
     }
 
     public void CalculateFCost()

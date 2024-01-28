@@ -24,6 +24,8 @@ public class Enemic : MonoBehaviour
     public int RangDeVisio = 6;
     private int[] localitzat = { 0, 0 };
     private bool isFollowing = false;
+    private List<Vector2> pathVectorList;
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +63,7 @@ public class Enemic : MonoBehaviour
         
     }
 
-    public int[] posicioJugador()
+    public int[] PosicioJugador()
     {
         int[] posPlayer = new int[] { movement.currentCellPosition.x, movement.currentCellPosition.y };
         return posPlayer;
@@ -69,18 +71,17 @@ public class Enemic : MonoBehaviour
 
     private bool playerFound(int[] aRevisar)
     {
-        int[] posPlayer = posicioJugador();
+        int[] posPlayer = PosicioJugador();
         return aRevisar == posPlayer;
     }
 
     private void actualitzaLocalitzat()
     {
-        localitzat = posicioJugador();
+        localitzat = PosicioJugador();
     }
 
     public void ChangeState(EnemyStates newState = EnemyStates.Idle)
     {
-        // Debug.Log($"S'ha canviat a l'estat {newState}");
         state = newState;
         animController.ChangeAnimationState();
     }
@@ -107,11 +108,10 @@ public class Enemic : MonoBehaviour
     private bool estaDisponible(int n)
     {
         int[] novaPosicio = posibleMoviment(n);
-
         return maze.EsViable(novaPosicio[0], novaPosicio[1]);
     }
 
-    public int[] posicioEnemic()
+    public int[] PosicioEnemic()
     {
         int[] posActual = (int[])posicio.Clone();
         return posActual;
@@ -135,6 +135,16 @@ public class Enemic : MonoBehaviour
         else if (n == 2) return 4;
         else if (n == 3) return 1;
         else return 2;
+    }
+
+    private int Direccio(int x, int y)
+    {
+        int[] posActual = PosicioEnemic();
+        if (x < posActual[0]) return 1;
+        else if (y < posActual[1]) return 2;
+        else if (x > posActual[0]) return 3;
+        else if (y < posActual[1]) return 4;
+        else return 0;
     }
 
     private void obternirNovaDireccio()
@@ -169,13 +179,41 @@ public class Enemic : MonoBehaviour
         int[] novaPosAux = posibleMoviment(Direction);
         ChangeState();
         novaPosicio = new Vector2(novaPosAux[0], novaPosAux[1]);
-        // Debug.Log(posicio[0]+", " + posicio[1]+"; i anem cap a "+novaPosicio);
         direccions = new List<int>() { 1, 2, 3, 4 };
+    }
+
+    private void newDirection(int x, int y)
+    {
+        Direction = Direccio(x, y);
     }
 
     private void Persegueix()
     {
-        throw new NotImplementedException();
+        int[] novaPosAux = aconsegueixCami();
+        newDirection(novaPosAux[0], novaPosAux[1]);
+        ChangeState();
+        novaPosicio = new Vector2(novaPosAux[0], novaPosAux[1]);
+    }
+
+    
+
+    private int[] aconsegueixCami()
+    {
+        //currentPathIndex = 0;
+
+        pathVectorList = Pathfinding.Instance.FindPath();
+        
+        if(pathVectorList != null && pathVectorList.Count > 1)
+        {
+            pathVectorList.RemoveAt(0);
+        }
+
+        int dx = (int)pathVectorList[0].x;
+        int dy = (int)pathVectorList[0].y;
+
+        int[] novaCella = { dx, dy };
+
+        return novaCella;
     }
 
     internal void Die()
