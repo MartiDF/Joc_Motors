@@ -216,7 +216,7 @@ public class Enemic : MonoBehaviour
     private void Persegueix()
     {
         int[] novaPosAux = pathfinding.TrobarSegCasella(PosicioJugador(),PosicioEnemic());
-        moveSpeed += 0.5f;
+        moveSpeed += 0.1032525f;
         newDirection(novaPosAux[0], novaPosAux[1]);
         ChangeState();
         novaPosicio = new Vector2(novaPosAux[0], novaPosAux[1]);
