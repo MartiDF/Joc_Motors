@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.XR;
+using static UnityEditor.PlayerSettings;
 
 public class Enemic : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Enemic : MonoBehaviour
     private Vector2 novaPosicio;
 
     private MazeMaker maze;
+    private Pathfinding pathfinding;
     private Movement movement;
     private EnemyAnimatorController animController;
 
@@ -27,11 +29,15 @@ public class Enemic : MonoBehaviour
     private List<Vector2> pathVectorList;
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         animController = gameObject.GetComponent<EnemyAnimatorController>();
         maze = MazeMaker.Instance;
+        pathfinding = Pathfinding.Instance;
+        movement = Movement.Instance;
         posicio[0] = (int)transform.position.x;
         posicio[1] = (int)transform.position.y;
         novaPosicio = new Vector2(posicio[0], posicio[1]);
@@ -63,16 +69,17 @@ public class Enemic : MonoBehaviour
         
     }
 
-       public int[] PosicioJugador()
+    public int[] PosicioJugador()
     {
-        int[] posPlayer = new int[] { Movement.Instance.currentCellPosition.x, Movement.Instance.currentCellPosition.y };
+        int[] posPlayer = new int[] { (int)movement.transform.position.x, (int)movement.transform.position.y };
         return posPlayer;
     }
 
     private bool playerFound(int[] aRevisar)
     {
         int[] posPlayer = PosicioJugador();
-        return aRevisar == posPlayer;
+        //Debug.Log("Miro "+ aRevisar[0]+", "+ aRevisar[1]+", i el jugador es a: "+(posPlayer[0])+", " +(posPlayer[1]));
+        return aRevisar[0] == posPlayer[0] && aRevisar[1] == posPlayer[1];
     }
 
     private void actualitzaLocalitzat()
@@ -88,25 +95,32 @@ public class Enemic : MonoBehaviour
 
     private void vigilancia(int n)
     {
+        int[] posAct = PosicioEnemic();
+        //Debug.Log("Pos inicial x:" + posAct[0] + ", Pos inicial y: " + posAct[1]);
         bool transitable = true;
         bool viaLliure = true;
         int i = 0;
         int[] aRevisar = posibleMoviment(n);
         while (i < RangDeVisio && transitable && viaLliure)
         {
+            //Debug.Log("Pos x:" + aRevisar[0] + ", Pos y: " + aRevisar[1]);
             if (!maze.EsViable(aRevisar[0], aRevisar[1]))
             {
                 transitable = false;
-                Debug.Log("chocho");
+                //Debug.Log("chocho");
             }
 
-            else aRevisar = posibleMoviment(n);
+            else {
+                int[] auxRevisor = aRevisar;
+                aRevisar = rangDeVigilancia(n, auxRevisor); //Debug.Log("chichi");
+            }
+             if (playerFound(aRevisar)) { viaLliure = false;}
             i++;
-            if (playerFound(aRevisar)) viaLliure = false;
         }
         if (!viaLliure) {
             localitzat = aRevisar;
             isFollowing = true;
+            Debug.Log("peseta");
         }
         
     }
@@ -130,6 +144,18 @@ public class Enemic : MonoBehaviour
         if (n == 1) novaposicio[0] = novaposicio[0] - 1;
         else if (n == 2) novaposicio[1] = novaposicio[1] + 1;
         else if(n == 3) novaposicio[0] = novaposicio[0] + 1;
+        else novaposicio[1] = novaposicio[1] - 1;
+
+        return novaposicio;
+    }
+
+    private int[] rangDeVigilancia(int n, int[] pos)
+    {
+        int[] novaposicio = pos;
+
+        if (n == 1) novaposicio[0] = novaposicio[0] - 1;
+        else if (n == 2) novaposicio[1] = novaposicio[1] + 1;
+        else if (n == 3) novaposicio[0] = novaposicio[0] + 1;
         else novaposicio[1] = novaposicio[1] - 1;
 
         return novaposicio;
@@ -207,19 +233,23 @@ public class Enemic : MonoBehaviour
     {
         //currentPathIndex = 0;
 
-        pathVectorList = Pathfinding.Instance.FindPath();
-        
-        if(pathVectorList != null && pathVectorList.Count > 1)
+        pathVectorList = pathfinding.FindPath(PosicioJugador(),PosicioEnemic());
+
+        if(pathVectorList != null)
         {
-            pathVectorList.RemoveAt(0);
+            int dx = (int)pathVectorList[0].x;
+            int dy = (int)pathVectorList[0].y;
+
+            int[] novaCella = { dx, dy };
+
+            return novaCella;
+
         }
-
-        int dx = (int)pathVectorList[0].x;
-        int dy = (int)pathVectorList[0].y;
-
-        int[] novaCella = { dx, dy };
-
-        return novaCella;
+        else {
+            obternirNovaDireccio();
+            Debug.Log("No he pogut fer un cami");
+            return posibleMoviment(Direction);
+        }
     }
 
     internal void Die()

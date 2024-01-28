@@ -19,20 +19,28 @@ public class Pathfinding : MonoBehaviour
     private int[] posEnemic = { 0, 0 };
     private int[] posJugador = { 0, 0 };
 
+    private void Start()
+    {
+        maze = MazeMaker.Instance;
+
+    }
+
     public Pathfinding()
     {
         Instance = this;
-        maze = new MazeMaker();
+        
     }
 
-    public void GetPosicions()
-    {
-        posJugador = enemic.PosicioJugador();
-        posEnemic = enemic.PosicioEnemic();
-    }
+    //public void GetPosicions()
+    //{
+    //    posJugador = enemic.PosicioJugador();
+    //    posEnemic = enemic.PosicioEnemic();
+    //}
 
-    public List<Vector2> FindPath()
+    public List<Vector2> FindPath(int[] posJ, int[] posE)
     {
+        posJugador = posJ;
+        posEnemic = posE;
         List<PathNode> path = FindingThePath();
         if (path == null) return null;
         else{
@@ -47,7 +55,7 @@ public class Pathfinding : MonoBehaviour
 
     public List<PathNode> FindingThePath()
     {
-        GetPosicions();
+        //GetPosicions();
 
         PathNode startNode = new PathNode(maze, posEnemic[0], posEnemic[1]);
         PathNode endNode = new PathNode(maze, posJugador[0], posJugador[1]);

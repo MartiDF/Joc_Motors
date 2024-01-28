@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PathNode : MonoBehaviour
+public class PathNode
 {
     public MazeMaker maze;
     public int x;

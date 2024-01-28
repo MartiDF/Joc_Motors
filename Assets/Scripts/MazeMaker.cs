@@ -261,7 +261,6 @@ public class MazeMaker : MonoBehaviour
                     if ((int)(UnityEngine.Random.value * 1000) % 1000 <= enemicsProb)
                     {
                         GameObject enemicNou = Instantiate(Enemic, mapaTerreny.GetCellCenterWorld(mapaTerreny.WorldToCell(new Vector3Int(X - offset, Y - offset, -1))), Quaternion.identity);
-                        // Debug.Log(enemicNou.transform.position);
                         enemicNou.transform.parent = _triggers.transform;
                         enemics.Add(enemicNou.GetComponent<Enemic>());
                     }                   
