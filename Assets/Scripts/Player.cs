@@ -17,10 +17,13 @@ public class Player : MonoBehaviour
     public bool IsFighting { private set; get; } = false;
     public bool IsWalking = false;
     public bool IsArmed = false;
+    public Score _puntuacio;
+    private float puntenemic= 250;
 
     public void Start()
     {
         _gm = GameObject.Find("GameManager").GetComponent<GameController>();
+        _puntuacio = GameObject.Find("Scorenumber").GetComponent<Score>();
     }
 
     /* GETTERS */
@@ -141,9 +144,9 @@ public class Player : MonoBehaviour
         {
             SetStamina(IsArmed ? _gm.GetStaminaFightArmed() : _gm.GetStaminaFight());
             obj.gameObject.GetComponent<Enemic>().GetHit(_stamina <= 0);
+            _unarmed = true;
+            _puntuacio.Sumarpunts(puntenemic);
         }
-        
-
     }
 
     public void GoArmed() {
