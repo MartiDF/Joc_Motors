@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     private Animations _anims;
 
     private bool _inConsumable, _inSword, _inChest, _inFight, _inSpawn;
-    private bool _chested, _armed;
+    private bool _chested, _unarmed;
     private Collider2D _currentCollider;
 
     public void Start()
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         return _chested;}
 
     public bool GetIsArmed()  {
-        return _armed;}
+        return !_unarmed;}
 
     public float GetStamina() {
         return _stamina;}
@@ -130,19 +130,19 @@ public class Player : MonoBehaviour
     /* METHODS */
     public void GoFight(Collider2D obj) {
         if (obj == null) return;
-        if (_anims.isArmed()) _anims.Armed_attack();
+        if (!_anims.isUnarmed()) _anims.Armed_attack();
         else _anims.Unarmed_attack();
                 
         if (obj.CompareTag("Enemy"))
         {
-            SetStamina(_armed ? _gm.GetStaminaFightArmed() : _gm.GetStaminaFight());
+            SetStamina(!_unarmed ? _gm.GetStaminaFightArmed() : _gm.GetStaminaFight());
             obj.gameObject.GetComponent<Enemic>().GetHit(_stamina <= 0);
-            _armed = false;
+            _unarmed = true;
         }
         else
         {
              Destroy(obj.gameObject);
-            _armed = false;
+            _unarmed = true;
         }
         
 
@@ -150,12 +150,12 @@ public class Player : MonoBehaviour
 
     public void GoArmed() {
         _chested = false;
-        _armed = true;
+        _unarmed = false;
         
     }
 
     public void GoChested() { 
         _chested = true;
-        _armed = false;
+        _unarmed = true;
     }
 }
